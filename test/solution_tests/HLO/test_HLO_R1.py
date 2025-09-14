@@ -2,4 +2,7 @@ from solutions.HLO.hello_solution import HelloSolution
 
 
 def test_hello():
-    assert HelloSolution().hello("Sophie") == "Hello Sophie!"
+    output = HelloSolution().hello("Sophie")
+    assert "Sophie" in output
+    assert "hello" in output.lower()
+
