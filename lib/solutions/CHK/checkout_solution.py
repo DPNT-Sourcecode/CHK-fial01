@@ -20,23 +20,20 @@ class CheckoutSolution:
             amounts_dict = get_amounts(units)
         except ValueError:
             return -1
-        c_cost = amounts_dict["C"] * 20
-        d_cost = amounts_dict["D"] * 15
-        c_special_offer_amt = amounts_dict["A"] / 130
-        return 0
+        return get_cost(amounts_dict)
 
 
-def get_costs(amounts_dict: dict[str, int]) -> int:
-    a_price = 50
-    b_price = 30
-    c_price = 20
-    d_price = 15
-    a_special_price = 130
-    b_special_price = 45
-    c_cost = amounts_dict["C"] * c_price
-    d_cost = amounts_dict["D"] * d_price
-    a_cost = (amounts_dict["A"] / 3) * a_special_price + (amounts_dict["A"] % 3) * a_price
-    b_cost = (amounts_dict["A"] / 2) * b_special_price + (amounts_dict["A"] % 2) * b_price
+def get_cost(amounts_dict: dict[str, int]) -> int:
+    a_price: int = 50
+    b_price: int = 30
+    c_price: int = 20
+    d_price: int = 15
+    a_special_price: int = 130
+    b_special_price: int = 45
+    c_cost: int = amounts_dict["C"] * c_price
+    d_cost: int = amounts_dict["D"] * d_price
+    a_cost = (amounts_dict["A"] // 3) * a_special_price + (amounts_dict["A"] % 3) * a_price
+    b_cost = (amounts_dict["A"] // 2) * b_special_price + (amounts_dict["A"] % 2) * b_price
     return a_cost + b_cost + c_cost + d_cost
 
 
