@@ -11,8 +11,7 @@ class CheckoutSolution:
         if not isinstance(skus, str):
             return -1
 
-        regex = r"(\d+[ABCD]){1,4}"
-        units = re.findall(regex, skus)
+        units = get_units(skus)
         print(f"units = {units}")
         if len(units) == 0:
             return -1
@@ -30,6 +29,8 @@ def get_a(units: list[str]):
 def get_units(skus: str) -> list[str]:
     regex = r"(\d+[ABCD])"
     units = re.findall(regex, skus)
+    print(f"type units = {type(units)}")
     return units
+
 
 
