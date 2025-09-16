@@ -6,3 +6,5 @@ class CheckoutSolution:
         if not isinstance(skus, str):
             return -1
 
+        regex = r""
+
