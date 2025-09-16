@@ -22,9 +22,14 @@ class CheckoutSolution:
 
 def get_a(units: list[str]):
     a_reg = r"\d+A"
-    units_of_a = [re.match(a_reg, unit).group() for unit in units]
-    print(units_of_a)
-    return units_of_a
+    # units_of_a = [re.match(a_reg, unit).group() for unit in units if unit]
+    for unit in units:
+        print(f"unit = {unit}")
+        match = re.match(a_reg, unit)
+        group = match.group()
+        print(f"match = {match}")
+        print(f"group = {group}")
+    return 1
 
 
 # my regex is wrong
@@ -33,6 +38,3 @@ def get_units(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
-
-
-
