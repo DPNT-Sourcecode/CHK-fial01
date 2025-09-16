@@ -8,4 +8,7 @@ class CheckoutSolution:
             return -1
 
         regex = r"(\d+[ABCD]){1,4}"
+        units = re.search(regex, skus)
+        if not units:
+            return -1
 
