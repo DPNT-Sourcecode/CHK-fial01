@@ -1,3 +1,4 @@
+import re
 
 class CheckoutSolution:
 
@@ -6,5 +7,5 @@ class CheckoutSolution:
         if not isinstance(skus, str):
             return -1
 
-        regex = r""
+        regex = r"(\d+[ABCD]){1,4}"
 
