@@ -1,7 +1,7 @@
 import pytest
 
 from solutions.CHK.checkout_solution import CheckoutSolution
-from solutions.CHK.checkout_solution import get_a
+from solutions.CHK.checkout_solution import get_a_amounts
 from solutions.CHK.checkout_solution import get_amounts
 from solutions.CHK.checkout_solution import get_cost
 from solutions.CHK.checkout_solution import get_units_list
@@ -39,7 +39,7 @@ def test_get_units_list():
 
 
 def test_get_a():
-    assert get_a(["1A", "2B", "6A"]) == [1, 6]
+    assert get_a_amounts(["1A", "2B", "6A"]) == [1, 6]
 
 
 def test_get_cost():
@@ -56,5 +56,6 @@ def test_checkout():
     assert CheckoutSolution().checkout(input_without_A) == 180
     input_with_zero_A = "2B3C5D0A"
     assert CheckoutSolution().checkout(input_with_zero_A) == 180
+
 
 

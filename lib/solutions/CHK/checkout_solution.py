@@ -1,5 +1,12 @@
 import re
 
+A_PRICE: int = 50
+B_PRICE: int = 30
+C_PRICE: int = 20
+D_PRICE: int = 15
+A_SPECIAL_PRICE: int = 130
+B_SPECIAL_PRICE: int = 45
+
 # Assuming input format is such that each item is represented once
 # with a number then the item code.
 # i.e. no repetitions
@@ -7,44 +14,32 @@ import re
 class CheckoutSolution:
 
     # skus = unicode string
-    def checkout(self, skus):
+    def checkout(self, skus: str) -> int:
         if not isinstance(skus, str):
             return -1
 
-        units = get_units_list(skus)
-        print(f"units = {units}")
+        units: list[str] = get_units_list(skus)
         if len(units) == 0:
             return -1
 
         try:
-            amounts_dict = get_amounts(units)
+            amounts_dict: dict[str, int] = get_amounts(units)
         except ValueError:
             return -1
         return get_cost(amounts_dict)
 
 
-def get_cost(amounts_dict: dict[str, int]) -> int:
-    a_price: int = 50
-    b_price: int = 30
-    c_price: int = 20
-    d_price: int = 15
-    a_special_price: int = 130
-    b_special_price: int = 45
-    c_cost: int = amounts_dict["C"] * c_price
-    d_cost: int = amounts_dict["D"] * d_price
-    a_cost = (amounts_dict["A"] // 3) * a_special_price + (amounts_dict["A"] % 3) * a_price
-    b_cost = (amounts_dict["B"] // 2) * b_special_price + (amounts_dict["B"] % 2) * b_price
-    print(f"a_cost = {a_cost}, b_cost = {b_cost}, c_cost = {c_cost} d_cost = {d_cost}")
-    return a_cost + b_cost + c_cost + d_cost
-
-
+def get_units_list(skus: str) -> list[str]:
+    regex = r"(\d+[ABCD])"
+    units = re.findall(regex, skus)
+    return units
 
 
 def get_amounts(units: list[str]) -> dict[str, int]:
-    a_amounts = get_a(units)
-    b_amounts = get_b(units)
-    c_amounts = get_c(units)
-    d_amounts = get_d(units)
+    a_amounts = get_a_amounts(units)
+    b_amounts = get_b_amounts(units)
+    c_amounts = get_c_amounts(units)
+    d_amounts = get_d_amounts(units)
     if len(a_amounts) > 1 or len(b_amounts) > 1 or len(c_amounts) > 1 or len(d_amounts) > 1:
         raise ValueError("duplicate units")
     a_amount = a_amounts[0] if len(a_amounts) > 0 else 0
@@ -54,30 +49,32 @@ def get_amounts(units: list[str]) -> dict[str, int]:
     return dict(A=a_amount, B=b_amount, C=c_amount, D=d_amount)
 
 
-# brute force
-def get_a(units: list[str]) -> list[int]:
+# for a larger list would combine these methods
+def get_a_amounts(units: list[str]) -> list[int]:
     a_reg = r"\d+A"
     return [int(unit.replace("A", "")) for unit in units if re.match(a_reg, unit)]
 
 
-def get_b(units: list[str]) -> list[int]:
+def get_b_amounts(units: list[str]) -> list[int]:
     reg = r"\d+B"
     return [int(unit.replace("B", "")) for unit in units if re.match(reg, unit)]
 
 
-def get_c(units: list[str]) -> list[int]:
+def get_c_amounts(units: list[str]) -> list[int]:
     reg = r"\d+C"
     return [int(unit.replace("C", "")) for unit in units if re.match(reg, unit)]
 
 
-def get_d(units: list[str]) -> list[int]:
+def get_d_amounts(units: list[str]) -> list[int]:
     reg = r"\d+D"
     return [int(unit.replace("D", "")) for unit in units if re.match(reg, unit)]
 
 
-def get_units_list(skus: str) -> list[str]:
-    regex = r"(\d+[ABCD])"
-    units = re.findall(regex, skus)
-    print(f"type units = {type(units)}")
-    return units
+def get_cost(amounts_dict: dict[str, int]) -> int:
+    c_cost: int = amounts_dict["C"] * C_PRICE
+    d_cost: int = amounts_dict["D"] * D_PRICE
+    a_cost = (amounts_dict["A"] // 3) * A_SPECIAL_PRICE + (amounts_dict["A"] % 3) * A_PRICE
+    b_cost = (amounts_dict["B"] // 2) * B_SPECIAL_PRICE + (amounts_dict["B"] % 2) * B_PRICE
+    return a_cost + b_cost + c_cost + d_cost
+
 
