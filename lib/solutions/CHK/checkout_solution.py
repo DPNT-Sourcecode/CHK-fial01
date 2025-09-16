@@ -23,4 +23,5 @@ class CheckoutSolution:
 
 def get_a(units: list[str]):
     a_reg = r"\d+A"
-    a = [re.match(a_reg, unit) for unit in units]
+    units_of_a = [re.match(a_reg, unit) for unit in units]
+    

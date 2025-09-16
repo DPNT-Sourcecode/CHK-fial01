@@ -19,5 +19,5 @@ def test_checkout_repeated_sku():
 
 
 def test_get_a():
-    result = get_a(["6A", ["2B"]])
+    result = get_a(["6A", "2B"])
     assert result == 6
