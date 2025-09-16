@@ -28,7 +28,7 @@ def get_a(units: list[str]):
         if match:
             print(f"unit = {unit}")
             print(f"match = {match}")
-            number = re.sub(unit, "A", '')
+            number = re.sub(unit, "A$", "")
             print(f"number = {number}")
     return units_of_a
 
@@ -39,5 +39,6 @@ def get_units(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
+
 
 
