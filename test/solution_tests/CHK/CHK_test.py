@@ -17,5 +17,7 @@ def test_checkout_repeated_sku():
     result = CheckoutSolution().checkout("1A2B6A")
     assert result == -1
 
+
 def test_get_a():
-    result = get_a([""])
+    result = get_a(["6A", ["2B"]])
+    assert result == 6
