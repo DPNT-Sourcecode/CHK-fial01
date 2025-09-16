@@ -1,5 +1,6 @@
 from solutions.CHK.checkout_solution import CheckoutSolution
 from solutions.CHK.checkout_solution import get_a
+from solutions.CHK.checkout_solution import get_units
 
 
 # What's the input format?
@@ -18,6 +19,7 @@ def test_checkout_repeated_sku():
     assert result == -1
 
 
-def test_get_a():
-    result = get_a(["6A", "2B"])
-    assert result == 6
+def test_get_units():
+    get_units("3A") == ["3A"]
+    get_units("3A5B") == ["3A", "5B"]
+

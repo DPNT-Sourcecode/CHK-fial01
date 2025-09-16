@@ -23,5 +23,10 @@ class CheckoutSolution:
 
 def get_a(units: list[str]):
     a_reg = r"\d+A"
-    units_of_a = [re.match(a_reg, unit) for unit in units]
-    
+    units_of_a = [re.match(a_reg, unit).group() for unit in units]
+
+
+def get_units(skus: str) -> list[str]:
+    regex = r"(\d+[ABCD]){1,4}"
+    units = re.findall(regex, skus)
+    return units
