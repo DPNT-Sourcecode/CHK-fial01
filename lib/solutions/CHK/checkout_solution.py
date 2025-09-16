@@ -1,5 +1,9 @@
 import re
 
+# Assuming input format is such that each item is represented once
+# with a number then the item code.
+# i.e. no repetitions
+# does every item have to be represented? Guessing no.
 class CheckoutSolution:
 
     # skus = unicode string
@@ -11,4 +15,6 @@ class CheckoutSolution:
         units = re.search(regex, skus)
         if not units:
             return -1
+        
+
 
