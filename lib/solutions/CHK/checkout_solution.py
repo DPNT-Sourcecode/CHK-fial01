@@ -26,14 +26,17 @@ class CheckoutSolution:
 
 
 def get_amounts(units: list[str]):
-    a = get_a(units)
-    b = get_b(units)
-    c = get_c(units)
-    d = get_d(units)
-    if len(a) > 1 or len(b) > 1 or len(c) > 1 or len(d) > 1:
+    a_amounts = get_a(units)
+    b_amounts = get_b(units)
+    c_amounts = get_c(units)
+    d_amounts = get_d(units)
+    if len(a_amounts) > 1 or len(b_amounts) > 1 or len(c_amounts) > 1 or len(d_amounts) > 1:
         raise ValueError("duplicate units")
-    if len(a)
-    return dict(A=a, B=b, C=c, D=d)
+    a_amount = a_amounts[0] if len(a_amounts) > 0 else 0
+    b_amount = b_amounts[0] if len(b_amounts) > 0 else 0
+    c_amount = c_amounts[0] if len(c_amounts) > 0 else 0
+    d_amount = d_amounts[0] if len(d_amounts) > 0 else 0
+    return dict(A=a_amount, B=b_amount, C=c_amount, D=d_amount)
 
 
 # brute force
@@ -62,11 +65,3 @@ def get_units_list(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
-
-
-
-
-
-
-
-

@@ -8,6 +8,7 @@ from solutions.CHK.checkout_solution import get_units_list
 
 def test_get_amounts():
     result = get_amounts(["14A", "0B", "16C"])
+    assert result == {"A": 14, "B": 0, "C": 16, "D": 0}
 
 
 def test_get_amounts_raises_value_error():
@@ -38,5 +39,3 @@ def test_get_units_list():
 
 def test_get_a():
     assert get_a(["1A", "2B", "6A"]) == [1, 6]
-
-
