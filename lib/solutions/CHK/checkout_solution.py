@@ -19,5 +19,3 @@ class CheckoutSolution:
 
         # noOfA = re.
         return 0
-
-

@@ -15,4 +15,3 @@ def test_checkout_invalid_input():
 def test_checkout_repeated_sku():
     result = CheckoutSolution().checkout("1A2B6A")
     assert result == -1
-
