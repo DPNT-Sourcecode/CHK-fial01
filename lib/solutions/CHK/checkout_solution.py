@@ -32,6 +32,7 @@ def get_amounts(units: list[str]):
     d = get_d(units)
     if len(a) > 1 or len(b) > 1 or len(c) > 1 or len(d) > 1:
         raise ValueError("duplicate units")
+    if len(a)
     return dict(A=a, B=b, C=c, D=d)
 
 
@@ -61,6 +62,7 @@ def get_units_list(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
+
 
 
 
