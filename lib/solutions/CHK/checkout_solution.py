@@ -63,4 +63,3 @@ def get_units_list(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
-
