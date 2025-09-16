@@ -7,10 +7,7 @@ D_PRICE: int = 15
 A_SPECIAL_PRICE: int = 130
 B_SPECIAL_PRICE: int = 45
 
-# Assuming input format is such that each item is represented once
-# with a number then the item code.
-# i.e. no repetitions
-# does every item have to be represented? Guessing no.
+# well I fundamentally misunderstood the format..
 class CheckoutSolution:
 
     # skus = unicode string
@@ -76,5 +73,6 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
     a_cost = (amounts_dict["A"] // 3) * A_SPECIAL_PRICE + (amounts_dict["A"] % 3) * A_PRICE
     b_cost = (amounts_dict["B"] // 2) * B_SPECIAL_PRICE + (amounts_dict["B"] % 2) * B_PRICE
     return a_cost + b_cost + c_cost + d_cost
+
 
 
