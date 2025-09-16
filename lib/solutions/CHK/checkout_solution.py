@@ -11,7 +11,7 @@ class CheckoutSolution:
         if not isinstance(skus, str):
             return -1
 
-        units = get_units(skus)
+        units = get_units_list(skus)
         print(f"units = {units}")
         if len(units) == 0:
             return -1
@@ -22,16 +22,17 @@ class CheckoutSolution:
 
 def get_a(units: list[str]):
     a_reg = r"\d+A"
-    units_of_a = [re.sub("A", "", unit) for unit in units if re.match(a_reg, unit)]
+    # check for value errors?
+    units_of_a = [int(unit.replace("A", "")) for unit in units if re.match(a_reg, unit)]
     return units_of_a
 
 
-# my regex is wrong
-def get_units(skus: str) -> list[str]:
+def get_units_list(skus: str) -> list[str]:
     regex = r"(\d+[ABCD])"
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
+
 
 
 
