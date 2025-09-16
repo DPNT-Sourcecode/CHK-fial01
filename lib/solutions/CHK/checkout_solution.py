@@ -33,7 +33,8 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
     c_cost: int = amounts_dict["C"] * c_price
     d_cost: int = amounts_dict["D"] * d_price
     a_cost = (amounts_dict["A"] // 3) * a_special_price + (amounts_dict["A"] % 3) * a_price
-    b_cost = (amounts_dict["A"] // 2) * b_special_price + (amounts_dict["A"] % 2) * b_price
+    b_cost = (amounts_dict["B"] // 2) * b_special_price + (amounts_dict["B"] % 2) * b_price
+    print(f"a_cost = {a_cost}, b_cost = {b_cost}, c_cost = {c_cost} d_cost = {d_cost}")
     return a_cost + b_cost + c_cost + d_cost
 
 
@@ -79,3 +80,4 @@ def get_units_list(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
+

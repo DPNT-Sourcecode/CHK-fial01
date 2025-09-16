@@ -42,7 +42,6 @@ def test_get_a():
     assert get_a(["1A", "2B", "6A"]) == [1, 6]
 
 
-
 def test_get_cost():
     input = {"A": 14, "B": 11, "C": 16, "D": 4}
-    assert get_cost(input) == 
+    assert get_cost(input) == 1225
