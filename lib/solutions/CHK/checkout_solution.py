@@ -23,6 +23,8 @@ class CheckoutSolution:
 def get_a(units: list[str]):
     a_reg = r"\d+A"
     units_of_a = [re.match(a_reg, unit).group() for unit in units]
+    print(units_of_a)
+    return units_of_a
 
 
 # my regex is wrong

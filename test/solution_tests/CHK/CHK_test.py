@@ -25,4 +25,8 @@ def test_get_units():
     assert get_units("1A2B6A") == ["1A", "2B", "6A"]
 
 
+def test_get_a():
+    assert get_a(["1A", "2B", "6A"]) == [1,6]
+
+
 
