@@ -22,14 +22,7 @@ class CheckoutSolution:
 
 def get_a(units: list[str]):
     a_reg = r"\d+A"
-    units_of_a = [unit for unit in units if re.match(a_reg, unit)]
-    for unit in units:
-        match = re.match(a_reg, unit)
-        if match:
-            print(f"unit = {unit}")
-            print(f"match = {match}")
-            number = re.sub(unit, "A$", "")
-            print(f"number = {number}")
+    units_of_a = [re.sub("A", "", unit) for unit in units if re.match(a_reg, unit)]
     return units_of_a
 
 
@@ -39,6 +32,7 @@ def get_units(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
+
 
 
 
