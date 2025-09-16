@@ -50,4 +50,11 @@ def test_get_cost():
 def test_checkout():
     input = "14A11B16C4D"
     assert CheckoutSolution().checkout(input) == 1255
+    scrambled_input = "16C14A4D11B"
+    assert CheckoutSolution().checkout(scrambled_input) == 1255
+    input_without_A = "2B3C5D"
+    assert CheckoutSolution().checkout(input_without_A) == 180
+    input_with_zero_A = "2B3C5D0A"
+    assert CheckoutSolution().checkout(input_with_zero_A) == 180
+
 
