@@ -26,9 +26,10 @@ def get_a(units: list[str]):
     units_of_a = [re.match(a_reg, unit).group() for unit in units]
 
 
-# findall does not do what I want :/
+# my regex is wrong
 def get_units(skus: str) -> list[str]:
-    regex = r"((\d+[ABCD]){1,4})+"
+    regex = r"(\d+[ABCD])"
     units = re.findall(regex, skus)
     return units
+
 
