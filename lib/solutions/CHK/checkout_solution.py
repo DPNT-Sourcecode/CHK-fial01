@@ -16,16 +16,14 @@ class CheckoutSolution:
         if len(units) == 0:
             return -1
 
-        a = get_a(units)
-        b = get_b(units)
-        c = get_c(units)
-        d = get_d(units)
-        if len(a) > 1 or len(b) > 1 or len(c) > 1 or len(d) > 1:
+        try:
+            amounts_dict = get_amounts(units)
+        except ValueError:
             return -1
         return 0
 
 
-def get_amounts(units: list[str]):
+def get_amounts(units: list[str]) -> dict[str, int]:
     a_amounts = get_a(units)
     b_amounts = get_b(units)
     c_amounts = get_c(units)
@@ -65,3 +63,4 @@ def get_units_list(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
+
