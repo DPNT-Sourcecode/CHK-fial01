@@ -20,7 +20,26 @@ class CheckoutSolution:
             amounts_dict = get_amounts(units)
         except ValueError:
             return -1
+        c_cost = amounts_dict["C"] * 20
+        d_cost = amounts_dict["D"] * 15
+        c_special_offer_amt = amounts_dict["A"] / 130
         return 0
+
+
+def get_costs(amounts_dict: dict[str, int]) -> int:
+    a_price = 50
+    b_price = 30
+    c_price = 20
+    d_price = 15
+    a_special_price = 130
+    b_special_price = 45
+    c_cost = amounts_dict["C"] * c_price
+    d_cost = amounts_dict["D"] * d_price
+    a_cost = (amounts_dict["A"] / 3) * a_special_price + (amounts_dict["A"] % 3) * a_price
+    b_cost = (amounts_dict["A"] / 2) * b_special_price + (amounts_dict["A"] % 2) * b_price
+    return a_cost + b_cost + c_cost + d_cost
+
+
 
 
 def get_amounts(units: list[str]) -> dict[str, int]:
@@ -63,3 +82,4 @@ def get_units_list(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
+
