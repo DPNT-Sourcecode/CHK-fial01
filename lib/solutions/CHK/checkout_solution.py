@@ -24,12 +24,12 @@ def get_a(units: list[str]):
     a_reg = r"\d+A"
     units_of_a = [unit for unit in units if re.match(a_reg, unit)]
     for unit in units:
-        print(f"unit = {unit}")
         match = re.match(a_reg, unit)
         if match:
-            group = match.group()
+            print(f"unit = {unit}")
             print(f"match = {match}")
-            print(f"group = {group}")
+            number = re.sub(unit, "A", '')
+            print(f"number = {number}")
     return units_of_a
 
 
@@ -39,4 +39,5 @@ def get_units(skus: str) -> list[str]:
     units = re.findall(regex, skus)
     print(f"type units = {type(units)}")
     return units
+
 
