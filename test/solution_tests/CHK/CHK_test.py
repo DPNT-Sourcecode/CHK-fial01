@@ -3,6 +3,7 @@ import pytest
 from solutions.CHK.checkout_solution import CheckoutSolution
 from solutions.CHK.checkout_solution import get_a
 from solutions.CHK.checkout_solution import get_amounts
+from solutions.CHK.checkout_solution import get_cost
 from solutions.CHK.checkout_solution import get_units_list
 
 
@@ -44,4 +45,4 @@ def test_get_a():
 
 def test_get_cost():
     input = {"A": 14, "B": 11, "C": 16, "D": 4}
-    assert 
+    assert get_cost(input) == 
