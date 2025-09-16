@@ -12,9 +12,12 @@ class CheckoutSolution:
             return -1
 
         regex = r"(\d+[ABCD]){1,4}"
-        units = re.search(regex, skus)
-        if not units:
+        units = re.findall(regex, skus)
+        print(f"units = {units}")
+        if len(units) == 0:
             return -1
-        
+
+        # noOfA = re.
+        return 0
 
 
