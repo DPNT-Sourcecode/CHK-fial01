@@ -38,6 +38,7 @@ def get_amounts(skus: str) -> dict[str, int]:
         if c not in codes_dict.keys():
             raise ValueError(f"Item with code: {c} does not match expected "
                              f"codes: {codes_dict.keys()}")
+        codes_dict[c] += 1
     return codes_dict
 
 
