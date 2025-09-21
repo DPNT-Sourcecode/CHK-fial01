@@ -11,3 +11,4 @@ S_T_X_Y_Z_THREE_PRICE: int = 45
 def test_get_cost_for_stxyz():
     input = {"S": 3, "T": 1, "X": 2, "Y": 1, "Z": 0}
     assert get_cost_for_stxyz(input) == 107
+
