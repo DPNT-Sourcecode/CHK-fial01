@@ -26,6 +26,7 @@ def test_get_amounts_empty():
 def test_get_amounts_invalid_input_raises_value_error():
     with pytest.raises(ValueError):
         get_amounts("AABCCDAFG")
+        get_amounts("AABCCDAFG")
         get_amounts("sausage")
 
 

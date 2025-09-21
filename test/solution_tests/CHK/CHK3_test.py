@@ -1,8 +1,41 @@
+import pytest
+
 from solutions.CHK.checkout_solution import CheckoutSolution
 from solutions.CHK.checkout_solution import get_a_cost
+from solutions.CHK.checkout_solution import get_amounts
 from solutions.CHK.checkout_solution import get_b_cost
 from solutions.CHK.checkout_solution import get_cost
 from solutions.CHK.checkout_solution import get_f_cost
+
+
+def test_get_amounts():
+    input = "AABFCCEDAEF"
+    expected = {"A": 3, "B": 1, "C": 2, "D": 1, "E": 2, "F": 2}
+    assert get_amounts(input) == expected
+
+
+def test_get_amounts_missing_code():
+    input = "AACCDA"
+    expected = {"A": 3, "B": 0, "C": 2, "D": 1, "E": 0, "F": 0}
+    assert get_amounts(input) == expected
+
+
+def test_get_amounts_empty():
+    assert get_amounts("") == {"A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0}
+
+
+def test_get_cost():
+    input = {"A": 4, "B": 3, "C": 1, "D": 1, "E": 2, "F": 3}
+    assert get_cost(input) == 360
+    # 150 + 0 + 20 + 15 + 80 = 265
+    input = {"A": 4, "B": 0, "C": 1, "D": 1, "E": 2}
+
+
+def test_get_amounts_invalid_input_raises_value_error():
+    with pytest.raises(ValueError):
+        get_amounts("AABCCDAFGX")
+        get_amounts("AABCCDAFG")
+        get_amounts("sausage")
 
 
 def test_get_f_cost():
@@ -18,13 +51,6 @@ def test_get_f_cost():
     assert get_f_cost(10) == 70  # buy 7 get three free
     assert get_f_cost(11) == 80  # buy 8 get three free
     assert get_f_cost(12) == 80  # buy 8 get four free
-
-
-def test_get_cost():
-    input = {"A": 4, "B": 3, "C": 1, "D": 1, "E": 2}
-    assert get_cost(input) == 340
-    # 150 + 0 + 20 + 15 + 80 = 265
-    input = {"A": 4, "B": 0, "C": 1, "D": 1, "E": 2}
 
 
 def test_get_b_naive_cost():

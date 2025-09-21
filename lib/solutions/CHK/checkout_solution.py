@@ -46,7 +46,8 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
     c_cost: int = amounts_dict["C"] * C_PRICE
     d_cost: int = amounts_dict["D"] * D_PRICE
     e_cost: int = amounts_dict["E"] * E_PRICE
-    return a_cost + b_cost + c_cost + d_cost + e_cost
+    f_cost: int = amounts_dict["F"] * E_PRICE
+    return a_cost + b_cost + c_cost + d_cost + e_cost + f_cost
 
 
 def get_a_cost(no_of_a: int) -> int:
@@ -73,3 +74,4 @@ def get_f_cost(no_of_f: int) -> int:
     no_of_threes = no_of_f // 3
     remainder = no_of_f % 3
     return no_of_threes * F_THREE_PRICE + remainder * F_PRICE
+
