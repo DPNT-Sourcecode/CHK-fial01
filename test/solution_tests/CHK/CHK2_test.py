@@ -80,11 +80,11 @@ def test_get_a_naive_cost():
     assert calculate_naive_a_cost(2) == 100
     assert calculate_naive_a_cost(3) == 130
     assert calculate_naive_a_cost(4) == 180  # whoops
-    assert calculate_naive_a_cost(5) == 150
-    assert calculate_naive_a_cost(6) == 200  # < 260
-    assert calculate_naive_a_cost(7) == 250
-    assert calculate_naive_a_cost(8) == 280
-    assert calculate_naive_a_cost(9) == 330  # whoops
+    assert calculate_naive_a_cost(5) == 200
+    assert calculate_naive_a_cost(6) == 250  # < 260
+    assert calculate_naive_a_cost(7) == 300
+    assert calculate_naive_a_cost(8) == 330
+    assert calculate_naive_a_cost(9) == 380  # whoops
     assert calculate_naive_a_cost(10) == 300
     assert calculate_naive_a_cost(11) == 350
     assert calculate_naive_a_cost(12) == 400

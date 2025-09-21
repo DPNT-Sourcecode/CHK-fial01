@@ -6,7 +6,8 @@ C_PRICE: int = 20
 D_PRICE: int = 15
 E_PRICE: int = 40
 A_THREE_PRICE: int = 130  # 3A for 130
-A_FIVE_PRICE: int = 150  # 3A for 150
+# FFS 200 not 150
+A_FIVE_PRICE: int = 200  # 5A for 200
 B_SPECIAL_PAIR_PRICE: int = 45   # 2B for 45
 
 
@@ -69,3 +70,4 @@ def get_b_cost(no_of_b: int, no_of_e: int):
     pairs_of_b = b_to_pay // 2
     single_b = b_to_pay % 2
     return pairs_of_b * B_SPECIAL_PAIR_PRICE + single_b * B_PRICE
+
