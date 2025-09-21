@@ -100,12 +100,18 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
 
 
 def get_b_cost(amounts_dict: dict[str, int]):
-    return get_cost_for_code(amounts_dict["B"],
-                      [
-                          SpecialPrice(price=B_SPECIAL_PAIR_PRICE, quantity=2),
-                          SpecialPrice(price=B_PRICE, quantity=1)
-                      ], FreeOffer(code="E", quantity=2),
-                      amounts_dict=amounts_dict)
+    return get_cost_for_code(
+        amounts_dict=amounts_dict,
+        special_offer=SpecialOffer(
+            code="B",
+            special_prices=
+            [
+                SpecialPrice(price=B_SPECIAL_PAIR_PRICE, quantity=2),
+                SpecialPrice(price=B_PRICE, quantity=1)
+            ],
+            free_offer=FreeOffer(code="E", quantity=2)
+        ),
+    )
 
 
 # def get_f_cost(no_of_f: int) -> int:
@@ -114,7 +120,6 @@ def get_b_cost(amounts_dict: dict[str, int]):
 #                                  SpecialPrice(price=F_THREE_PRICE, quantity=3),
 #                                  SpecialPrice(price=F_PRICE, quantity=1)
 #                              ])
-
 
 
 # assume special prices list sorted descending amount order
@@ -133,3 +138,4 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+

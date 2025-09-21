@@ -1,8 +1,6 @@
-from solutions.CHK.checkout_solution import get_a_cost
 from solutions.CHK.checkout_solution import get_amounts
 from solutions.CHK.checkout_solution import get_b_cost
 from solutions.CHK.checkout_solution import get_cost
-from solutions.CHK.checkout_solution import get_f_cost
 
 empty_amounts_dict = dict(A=0, B=0, C=0, D=0, E=0, F=0, G=0, H=0, I=0, J=0, K=0, L=0,
                           M=0, N=0, O=0, P=0, Q=0, R=0, S=0, T=0, U=0, V=0, W=0, X=0,
@@ -51,21 +49,6 @@ def test_get_cost():
     assert get_cost(amounts_2) == 315
 
 
-def test_get_f_cost():
-    assert get_f_cost(1) == 10
-    assert get_f_cost(2) == 20  # buy 2
-    assert get_f_cost(3) == 20  # buy 2 get one free
-    assert get_f_cost(4) == 30  # buy 3 get one free
-    assert get_f_cost(5) == 40  # buy 4 get one free
-    assert get_f_cost(6) == 40  # buy 4 get two free
-    assert get_f_cost(7) == 50  # buy 5 get two free
-    assert get_f_cost(8) == 60  # buy 6 get two fre
-    assert get_f_cost(9) == 60  # buy 6 get three free
-    assert get_f_cost(10) == 70  # buy 7 get three free
-    assert get_f_cost(11) == 80  # buy 8 get three free
-    assert get_f_cost(12) == 80  # buy 8 get four free
-
-
 def test_get_b_naive_cost():
     # e = 0
     assert get_b_cost(dict(B=1, E=0)) == 30
@@ -104,19 +87,4 @@ def test_get_b_naive_cost():
     assert get_b_cost(dict(B=6, E=4)) == 90
 
 
-def test_get_a_naive_cost():
-    assert get_a_cost(1) == 50
-    assert get_a_cost(2) == 100
-    assert get_a_cost(3) == 130
-    assert get_a_cost(4) == 180  # whoops
-    assert get_a_cost(5) == 200
-    assert get_a_cost(6) == 250  # < 260
-    assert get_a_cost(7) == 300
-    assert get_a_cost(8) == 330
-    assert get_a_cost(9) == 380  # whoops
-    assert get_a_cost(10) == 400
-    assert get_a_cost(11) == 450
-    assert get_a_cost(12) == 500
-    assert get_a_cost(13) == 530
-    assert get_a_cost(14) == 580  # whoops
-    assert get_a_cost(15) == 600
+
