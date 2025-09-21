@@ -198,5 +198,3 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
         total_cost += cost
     return total_cost
 
-
-
