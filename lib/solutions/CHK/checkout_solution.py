@@ -9,6 +9,8 @@ A_THREE_PRICE: int = 130  # 3A for 130
 # FFS 200 not 150
 A_FIVE_PRICE: int = 200  # 5A for 200
 B_SPECIAL_PAIR_PRICE: int = 45   # 2B for 45
+F_PRICE: int = 10
+F_THREE_PRICE: int = 20
 
 
 class CheckoutSolution:
@@ -31,10 +33,11 @@ def get_amounts(skus: str) -> dict[str, int]:
     c_codes = re.findall(r"C", skus)
     d_codes = re.findall(r"D", skus)
     e_codes = re.findall(r"E", skus)
-    invalid_match = re.search(r"[^ABCDE]", skus)
+    f_codes = re.findall(r"F", skus)
+    invalid_match = re.search(r"[^ABCDEF]", skus)
     if invalid_match is not None:
         raise ValueError
-    return dict(A=len(a_codes), B=len(b_codes), C=len(c_codes), D=len(d_codes), E=len(e_codes))
+    return dict(A=len(a_codes), B=len(b_codes), C=len(c_codes), D=len(d_codes), E=len(e_codes), F=len(f_codes))
 
 
 def get_cost(amounts_dict: dict[str, int]) -> int:
@@ -67,4 +70,6 @@ def get_b_cost(no_of_b: int, no_of_e: int):
 
 
 def get_f_cost(no_of_f: int) -> int:
-    return 0
+    no_of_threes = no_of_f // 3
+    remainder = no_of_f % 3
+    return no_of_threes * F_THREE_PRICE + remainder * F_PRICE
