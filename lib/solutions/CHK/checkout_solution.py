@@ -9,10 +9,38 @@ C_PRICE: int = 20
 D_PRICE: int = 15
 E_PRICE: int = 40
 F_PRICE: int = 10
+G_PRICE: int = 20
+H_PRICE: int = 10
+I_PRICE: int = 35
+J_PRICE: int = 60
+K_PRICE: int = 80
+L_PRICE: int = 90
+M_PRICE: int = 15
+N_PRICE: int = 40
+O_PRICE: int = 10
+P_PRICE: int = 50
+Q_PRICE: int = 30
+R_PRICE: int = 50
+S_PRICE: int = 30
+T_PRICE: int = 20
+U_PRICE: int = 40
+V_PRICE: int = 50
+W_PRICE: int = 20
+X_PRICE: int = 90
+Y_PRICE: int = 10
+Z_PRICE: int = 50
 A_THREE_PRICE: int = 130  # 3A for 130
 A_FIVE_PRICE: int = 200  # 5A for 200
-B_SPECIAL_PAIR_PRICE: int = 45  # 2B for 45
+B_PAIR_PRICE: int = 45  # 2B for 45
 F_THREE_PRICE: int = 20  # 3F for 20
+H_FIVE_PRICE: int = 45
+H_TEN_PRICE: int = 80
+K_TWO_PRICE: int = 150
+P_FIVE_PRICE: int = 200
+Q_THREE_PRICE: int = 80
+U_FOUR_PRICE: int = 120
+V_TWO_PRICE: int = 90
+V_THREE_PRICE: int = 130
 
 
 @dataclass(frozen=True)
@@ -33,6 +61,26 @@ class SpecialOffer:
     special_prices: list[SpecialPrice]
     free_offer: Optional[FreeOffer] = None
 
+
+offers = dict(
+    A=SpecialOffer(code="A", special_prices=[
+        SpecialPrice(A_FIVE_PRICE, 5),
+        SpecialPrice(A_THREE_PRICE, 3),
+        SpecialPrice(A_PRICE, 1)
+    ]),
+    B=SpecialOffer(code="B", special_prices=[
+        SpecialPrice(price=B_PAIR_PRICE, quantity=2),
+        SpecialPrice(price=B_PRICE, quantity=1)
+    ], free_offer=FreeOffer(code="E", quantity=2)),
+    C=SpecialOffer(code="C", special_prices=[SpecialPrice(price=C_PRICE, quantity=1)]),
+    D=SpecialOffer(code="D", special_prices=[SpecialPrice(price=D_PRICE, quantity=1)]),
+    E=SpecialOffer(code="E", special_prices=[SpecialPrice(price=E_PRICE, quantity=1)]),
+    F=SpecialOffer(code="F", special_prices=[
+        SpecialPrice(price=F_THREE_PRICE, quantity=3),
+        SpecialPrice(price=F_PRICE, quantity=1)
+    ]),
+    G=SpecialOffer(code="G", special_prices=[SpecialPrice(price=G_PRICE, quantity=1)])
+)
 
 class CheckoutSolution:
 
@@ -72,7 +120,7 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
                                     ]))
     b_cost: int = get_cost_for_code(amounts_dict,
                                     SpecialOffer(code="B", special_prices=[
-                                        SpecialPrice(price=B_SPECIAL_PAIR_PRICE, quantity=2),
+                                        SpecialPrice(price=B_PAIR_PRICE, quantity=2),
                                         SpecialPrice(price=B_PRICE, quantity=1)
                                     ], free_offer=FreeOffer(code="E", quantity=2))
                                     )
@@ -101,7 +149,7 @@ def get_b_cost(amounts_dict: dict[str, int]):
             code="B",
             special_prices=
             [
-                SpecialPrice(price=B_SPECIAL_PAIR_PRICE, quantity=2),
+                SpecialPrice(price=B_PAIR_PRICE, quantity=2),
                 SpecialPrice(price=B_PRICE, quantity=1)
             ],
             free_offer=FreeOffer(code="E", quantity=2)
@@ -124,5 +172,6 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+
 
 
