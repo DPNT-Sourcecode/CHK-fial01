@@ -109,14 +109,14 @@ offers = dict(
                    free_offer=FreeOffer(code="R", quantity=3)
                    ),
     R=SpecialOffer(code="R", special_prices=[SpecialPrice(price=R_PRICE, quantity=1)]),
-    S=SpecialOffer(code="S", special_prices=[
-        SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
-        SpecialPrice(price=S_PRICE, quantity=1),
-    ]),
-    T=SpecialOffer(code="T", special_prices=[
-        SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
-        SpecialPrice(price=T_PRICE, quantity=1)
-    ]),
+    # S=SpecialOffer(code="S", special_prices=[
+    #     SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
+    #     SpecialPrice(price=S_PRICE, quantity=1),
+    # ]),
+    # T=SpecialOffer(code="T", special_prices=[
+    #     SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
+    #     SpecialPrice(price=T_PRICE, quantity=1)
+    # ]),
     U=SpecialOffer(code="U", special_prices=[
         SpecialPrice(price=U_FOUR_PRICE, quantity=4),
         SpecialPrice(price=U_PRICE, quantity=1)
@@ -127,18 +127,18 @@ offers = dict(
         SpecialPrice(price=V_PRICE, quantity=1),
     ]),
     W=SpecialOffer(code="W", special_prices=[SpecialPrice(price=W_PRICE, quantity=1)]),
-    X=SpecialOffer(code="X", special_prices=[
-        SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
-        SpecialPrice(price=X_PRICE, quantity=1)
-    ]),
-    Y=SpecialOffer(code="Y", special_prices=[
-        SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
-        SpecialPrice(price=Y_PRICE, quantity=1)
-    ]),
-    Z=SpecialOffer(code="Z", special_prices=[
-        SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
-        SpecialPrice(price=Z_PRICE, quantity=1)
-    ]),
+    # X=SpecialOffer(code="X", special_prices=[
+    #     SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
+    #     SpecialPrice(price=X_PRICE, quantity=1)
+    # ]),
+    # Y=SpecialOffer(code="Y", special_prices=[
+    #     SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
+    #     SpecialPrice(price=Y_PRICE, quantity=1)
+    # ]),
+    # Z=SpecialOffer(code="Z", special_prices=[
+    #     SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
+    #     SpecialPrice(price=Z_PRICE, quantity=1)
+    # ]),
 )
 
 
@@ -179,6 +179,7 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
     cost = 0
     for key in offers.keys():
         cost += get_cost_for_code(amounts_dict, offers[key])
+    cost += get_cost_for_stxyz(amounts_dict)
     return cost
 
 
@@ -234,6 +235,7 @@ def get_remainder(amounts_dict):
     no_of_z = amounts_dict["Z"]  # cost 21
     no_of_sty = amounts_dict["S"] + amounts_dict["T"] + amounts_dict["Y"]  # cost 20
     return no_of_x * X_PRICE + no_of_z * Z_PRICE + no_of_sty * S_PRICE
+
 
 
 
