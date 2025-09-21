@@ -43,14 +43,13 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
     return a_cost + b_cost + c_cost + d_cost
 
 
-def get_a_cost(no_of_a: int) -> int:
+# Could there be cases where it's cheaper to break the last 5 into more threes?
+# consider no_of_a = 6. Either 150 + 50 = 200 or 130*2 = 260
+def calculate_naive_a_cost(no_of_a: int) -> int:
     no_of_fives = no_of_a // 5
     remainder_from_fives = no_of_a % 5
     no_of_threes_in_remainder = remainder_from_fives // 3
     remainder_of_remainder = remainder_from_fives % 3
-    first_price = no_of_fives = (no_of_fives * A_FIVE_PRICE +
-                                 no_of_threes_in_remainder * A_THREE_PRICE +
-                                 remainder_of_remainder * A_PRICE
-                                 )
-    # Could there be cases where it's cheaper to break the last 5 into more threes?
-    # No, consider no_of_a = 6. Either 150 + 50 = 200 or 130*2 = 260
+    return (no_of_fives * A_FIVE_PRICE +
+            no_of_threes_in_remainder * A_THREE_PRICE +
+            remainder_of_remainder * A_PRICE)
