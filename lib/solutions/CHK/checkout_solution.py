@@ -78,4 +78,9 @@ def get_f_cost(no_of_f: int) -> int:
     return no_of_threes * F_THREE_PRICE + remainder * F_PRICE
 
 
+def get_cost_for_code(amount: int, no_of_free_items: int, base_price: int, special_prices: list[tuple[int, int]]):
+    to_pay = amount - no_of_free_items
+
+
+
 
