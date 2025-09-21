@@ -4,6 +4,7 @@ A_PRICE: int = 50
 B_PRICE: int = 30
 C_PRICE: int = 20
 D_PRICE: int = 15
+E_PRICE: int = 40
 A_THREE_PRICE: int = 130  # 3A for 130
 A_FIVE_PRICE: int = 150  # 3A for 150
 B_SPECIAL_PRICE: int = 45   # 2B for 45
@@ -28,17 +29,17 @@ def get_amounts(skus: str) -> dict[str, int]:
     b_codes = re.findall(r"B", skus)
     c_codes = re.findall(r"C", skus)
     d_codes = re.findall(r"D", skus)
-    invalid_match = re.search(r"[^ABCD]", skus)
+    e_codes = re.findall(r"E", skus)
+    invalid_match = re.search(r"[^ABCDE]", skus)
     if invalid_match is not None:
         raise ValueError
-    return dict(A=len(a_codes), B=len(b_codes), C=len(c_codes), D=len(d_codes))
+    return dict(A=len(a_codes), B=len(b_codes), C=len(c_codes), D=len(d_codes), E=len(e_codes))
 
 
 def get_cost(amounts_dict: dict[str, int]) -> int:
     c_cost: int = amounts_dict["C"] * C_PRICE
     d_cost: int = amounts_dict["D"] * D_PRICE
-    a_cost = (amounts_dict["A"] // 5) * A_FIVE_PRICE + (amounts_dict["A"] % 5) * A_PRICE
-
+    a_cost = get_a_cost(amounts_dict["A"])
     b_cost = (amounts_dict["B"] // 2) * B_SPECIAL_PRICE + (amounts_dict["B"] % 2) * B_PRICE
     return a_cost + b_cost + c_cost + d_cost
 
@@ -59,4 +60,5 @@ def calculate_naive_a_cost(no_of_a: int) -> int:
     return (no_of_fives * A_FIVE_PRICE +
             no_of_threes_in_remainder * A_THREE_PRICE +
             remainder_of_remainder * A_PRICE)
+
 
