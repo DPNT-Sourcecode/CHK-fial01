@@ -118,10 +118,10 @@ def test_checkout_invalid_input():
 
 
 def test_checkout():
-    assert CheckoutSolution().checkout("AABCABADBEE") == 340
-    assert CheckoutSolution().checkout("AACAADEE") == 295
+    assert CheckoutSolution().checkout("AABCABADBEEFFF") == 360
+    assert CheckoutSolution().checkout("AACAADEEF") == 305
     assert CheckoutSolution().checkout("") == 0
-    assert CheckoutSolution().checkout("ABCC") == 120
+    assert CheckoutSolution().checkout("ABCCFFFF") == 150
     assert CheckoutSolution().checkout("AAA") == 130
 
 
