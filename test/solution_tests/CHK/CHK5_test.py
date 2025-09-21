@@ -17,16 +17,17 @@ def test_remove_items_used_in_offers():
             {"S": 0, "T": 0, "X": 1, "Y": 0, "Z": 0})
 
 
-
 def test_get_cost():
     amounts = empty_amounts_dict.copy()
     amounts["A"] = 1  # 50
-    amounts["B"] = 2  # 60
+    amounts["B"] = 2  # 45
     amounts["S"] = 1  # 20
     amounts["T"] = 1  # 20
     amounts["X"] = 1  # 17
     amounts["Y"] = 1  # 20
     amounts["Z"] = 1  # 21
-    # 50 + 60 + 45 + 17 + 20
+    assert get_cost(amounts) == 177
+    # 50 + 45 + 45 + 17 + 20 = 177
+
 
 
