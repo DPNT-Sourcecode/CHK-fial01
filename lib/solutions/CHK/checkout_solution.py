@@ -13,7 +13,7 @@ G_PRICE: int = 20
 H_PRICE: int = 10
 I_PRICE: int = 35
 J_PRICE: int = 60
-K_PRICE: int = 80
+K_PRICE: int = 70
 L_PRICE: int = 90
 M_PRICE: int = 15
 N_PRICE: int = 40
@@ -197,4 +197,5 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+
 
