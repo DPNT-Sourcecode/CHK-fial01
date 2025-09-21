@@ -187,7 +187,6 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
     left_to_pay = amounts_dict[special_offer.code]
     free_offer = special_offer.free_offer
     if free_offer:
-        # check key error higher up
         left_to_pay = left_to_pay - amounts_dict[free_offer.code] // free_offer.quantity
     if left_to_pay <= 0:
         return total_cost
@@ -197,3 +196,4 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+
