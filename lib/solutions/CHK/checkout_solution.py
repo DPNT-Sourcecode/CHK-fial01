@@ -108,7 +108,7 @@ offers = dict(
                    ],
                    free_offer=FreeOffer(code="R", quantity=3)
                    ),
-    R=SpecialOffer(code="R", special_prices=[SpecialPrice(price=R_PRICE, quantity=1) ]),
+    R=SpecialOffer(code="R", special_prices=[SpecialPrice(price=R_PRICE, quantity=1)]),
     S=SpecialOffer(code="S", special_prices=[
         SpecialPrice(S_T_X_Y_Z_THREE_PRICE, quantity=3),
         SpecialPrice(price=S_PRICE, quantity=1),
@@ -208,15 +208,25 @@ def get_cost_for_stxyz(amounts_dict):
     return cost_of_triples + cost_of_remainder
 
 
+def remove_items_used_in_offers(amounts_dict):
+    no_of_items = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"] + amounts_dict["Y"] + amounts_dict["Z"])
+    no_of_triples = no_of_items // 3
+    remainder = no_of_items % 3
+    for item in range(0, )
+
+
 def get_cheapest_remainder(amounts_dict):
     cost = 0
+    no_of_items = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
+                   + amounts_dict["Y"] + amounts_dict["Z"]) // 3
     no_of_triples = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
                      + amounts_dict["Y"] + amounts_dict["Z"]) // 3
     no_of_x = amounts_dict["X"]  # cost 17
     no_of_z = amounts_dict["Z"]  # cost 21
-    no_of_sty = amounts_dict["S"] + amounts_dict["T"] + amounts_dict["Y"] # cost 20
-    remainder = no_of_triples % 3
-    print(f"no_of_triples={no_of_triples}, no_of_x={no_of_x}, no_of_z={no_of_z}, no_of_sty={no_of_sty}, remainder={remainder}")
+    no_of_sty = amounts_dict["S"] + amounts_dict["T"] + amounts_dict["Y"]  # cost 20
+    remainder = no_of_items % 3
+    print(
+        f"no_of_triples={no_of_triples}, no_of_x={no_of_x}, no_of_z={no_of_z}, no_of_sty={no_of_sty}, remainder={remainder}")
     if remainder < no_of_x:
         return X_PRICE * remainder
     else:
@@ -230,3 +240,4 @@ def get_cheapest_remainder(amounts_dict):
             remainder -= no_of_sty
             cost += Z_PRICE * no_of_z
             return cost
+
