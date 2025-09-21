@@ -10,8 +10,21 @@ def test_get_amounts():
     assert get_amounts(input) == expected
 
 
+def test_get_amounts_missing_code():
+    input = "AACCDA"
+    expected = {"A": 3, "B": 0, "C": 2, "D": 1}
+    assert get_amounts(input) == expected
 
 
+def test_get_amounts_empty():
+    assert get_amounts("") == {"A": 0, "B": 0, "C": 0, "D": 0}
+    assert get_amounts("sausage") == {"A": 0, "B": 0, "C": 0, "D": 0}
+
+
+def test_get_amounts_handles_foreign_code():
+    input = "AABCCDAFG"
+    expected = {"A": 3, "B": 1, "C": 2, "D": 1}
+    assert get_amounts(input) == expected
 
 
 
@@ -74,4 +87,5 @@ def test_get_amounts():
 #     assert CheckoutSolution().checkout(input_without_A) == 180
 #     input_with_zero_A = "2B3C5D0A"
 #     assert CheckoutSolution().checkout(input_with_zero_A) == 180
+
 
