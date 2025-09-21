@@ -4,8 +4,9 @@ A_PRICE: int = 50
 B_PRICE: int = 30
 C_PRICE: int = 20
 D_PRICE: int = 15
-A_SPECIAL_PRICE: int = 130
-B_SPECIAL_PRICE: int = 45
+A_SPECIAL_PRICE: int = 130  # 3A for 130
+B_SPECIAL_PRICE: int = 45   # 2B for 45
+
 
 # well I fundamentally misunderstood the format..
 class CheckoutSolution:
@@ -27,7 +28,9 @@ def get_amounts(skus: str) -> dict[str, int]:
     b_codes = re.findall(r"B", skus)
     c_codes = re.findall(r"C", skus)
     d_codes = re.findall(r"D", skus)
-    invalid = re.search(r"[^ABCD]")
+    invalid_match = re.search(r"[^ABCD]", skus)
+    if invalid_match is not None:
+        raise ValueError
     return dict(A=len(a_codes), B=len(b_codes), C=len(c_codes), D=len(d_codes))
 
 
@@ -37,6 +40,7 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
     a_cost = (amounts_dict["A"] // 3) * A_SPECIAL_PRICE + (amounts_dict["A"] % 3) * A_PRICE
     b_cost = (amounts_dict["B"] // 2) * B_SPECIAL_PRICE + (amounts_dict["B"] % 2) * B_PRICE
     return a_cost + b_cost + c_cost + d_cost
+
 
 
 
