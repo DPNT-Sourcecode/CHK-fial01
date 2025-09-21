@@ -36,14 +36,15 @@ def test_checkout():
     assert CheckoutSolution().checkout("AABCABADCB") == 310
     assert CheckoutSolution().checkout("") == 0
     assert CheckoutSolution().checkout("ABCC") == 120
+    assert CheckoutSolution().checkout("AAA") == 130
 
 
 def test_checkout_invalid_input():
-    result = CheckoutSolution().checkout(12)
-    assert result == -1
+    assert CheckoutSolution().checkout("1A2B6A") == -1
+    assert CheckoutSolution().checkout("aAA") == -1
+    assert CheckoutSolution().checkout(12) == -1
+    assert CheckoutSolution().checkout("carrotsA") == -1
 
 
-def test_checkout_invalid_sku():
-    result = CheckoutSolution().checkout("1A2B6A")
-    assert result == -1
+
 
