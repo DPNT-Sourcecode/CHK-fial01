@@ -1,13 +1,10 @@
+from solutions.CHK.checkout_solution import get_cost
 from solutions.CHK.checkout_solution import get_cost_for_stxyz
 from solutions.CHK.checkout_solution import remove_items_used_in_offers
 
-S_PRICE: int = 20
-T_PRICE: int = 20
-X_PRICE: int = 17
-Y_PRICE: int = 20
-Z_PRICE: int = 21
-S_T_X_Y_Z_THREE_PRICE: int = 45
-
+empty_amounts_dict = dict(A=0, B=0, C=0, D=0, E=0, F=0, G=0, H=0, I=0, J=0, K=0, L=0,
+                          M=0, N=0, O=0, P=0, Q=0, R=0, S=0, T=0, U=0, V=0, W=0, X=0,
+                          Y=0, Z=0)
 
 def test_get_cost_for_stxyz():
     input = {"S": 3, "T": 1, "X": 2, "Y": 1, "Z": 0}
@@ -18,3 +15,18 @@ def test_remove_items_used_in_offers():
     input = {"S": 3, "T": 1, "X": 2, "Y": 1, "Z": 0}
     assert (remove_items_used_in_offers(input) ==
             {"S": 0, "T": 0, "X": 1, "Y": 0, "Z": 0})
+
+
+
+def test_get_cost():
+    amounts = empty_amounts_dict.copy()
+    amounts["A"] = 1  # 50
+    amounts["B"] = 2  # 60
+    amounts["S"] = 1  # 20
+    amounts["T"] = 1  # 20
+    amounts["X"] = 1  # 17
+    amounts["Y"] = 1  # 20
+    amounts["Z"] = 1  # 21
+    # 50 + 60 + 45 + 17 + 20
+
+
