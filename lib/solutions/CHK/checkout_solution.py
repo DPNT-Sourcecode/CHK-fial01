@@ -4,7 +4,8 @@ A_PRICE: int = 50
 B_PRICE: int = 30
 C_PRICE: int = 20
 D_PRICE: int = 15
-A_SPECIAL_PRICE: int = 130  # 3A for 130
+A_THREE_PRICE: int = 130  # 3A for 130
+A_FIVE_PRICE: int = 150  # 3A for 130
 B_SPECIAL_PRICE: int = 45   # 2B for 45
 
 
@@ -36,8 +37,19 @@ def get_amounts(skus: str) -> dict[str, int]:
 def get_cost(amounts_dict: dict[str, int]) -> int:
     c_cost: int = amounts_dict["C"] * C_PRICE
     d_cost: int = amounts_dict["D"] * D_PRICE
-    a_cost = (amounts_dict["A"] // 3) * A_SPECIAL_PRICE + (amounts_dict["A"] % 3) * A_PRICE
+    a_cost = (amounts_dict["A"] // 5) * A_FIVE_PRICE + (amounts_dict["A"] % 5) * A_PRICE
+    
     b_cost = (amounts_dict["B"] // 2) * B_SPECIAL_PRICE + (amounts_dict["B"] % 2) * B_PRICE
     return a_cost + b_cost + c_cost + d_cost
 
 
+def get_a_cost(no_of_a: int) -> int:
+    no_of_fives = no_of_a // 5
+    remainder_from_fives = no_of_a % 5
+    no_of_threes_in_remainder = remainder_from_fives // 3
+    remainder_of_remainder = remainder_from_fives % 3
+    first_price = no_of_fives = (no_of_fives * A_FIVE_PRICE +
+                                 no_of_threes_in_remainder * A_THREE_PRICE +
+                                 remainder_of_remainder * A_PRICE
+                                 )
+    # Could there be cases where it's cheaper to break the last 5 into more threes?
