@@ -1,7 +1,7 @@
 import pytest
 
 from solutions.CHK.checkout_solution import calculate_naive_a_cost
-from solutions.CHK.checkout_solution import calculate_naive_b_cost
+from solutions.CHK.checkout_solution import get_b_cost
 from solutions.CHK.checkout_solution import get_a_cost
 from solutions.CHK.checkout_solution import get_amounts
 
@@ -30,40 +30,40 @@ def test_get_amounts_invalid_input_raises_value_error():
 
 def test_get_b_naive_cost():
     # e = 0
-    assert calculate_naive_b_cost(1, 0) == 30
-    assert calculate_naive_b_cost(2, 0) == 45
-    assert calculate_naive_b_cost(3, 0) == 75
-    assert calculate_naive_b_cost(4, 0) == 90
-    assert calculate_naive_b_cost(5, 0) == 120
-    assert calculate_naive_b_cost(6, 0) == 135
+    assert get_b_cost(1, 0) == 30
+    assert get_b_cost(2, 0) == 45
+    assert get_b_cost(3, 0) == 75
+    assert get_b_cost(4, 0) == 90
+    assert get_b_cost(5, 0) == 120
+    assert get_b_cost(6, 0) == 135
     # e = 1
-    assert calculate_naive_b_cost(1, 1) == 30
-    assert calculate_naive_b_cost(2, 1) == 45
-    assert calculate_naive_b_cost(3, 1) == 75
-    assert calculate_naive_b_cost(4, 1) == 90
-    assert calculate_naive_b_cost(5, 1) == 120
-    assert calculate_naive_b_cost(6, 1) == 135
+    assert get_b_cost(1, 1) == 30
+    assert get_b_cost(2, 1) == 45
+    assert get_b_cost(3, 1) == 75
+    assert get_b_cost(4, 1) == 90
+    assert get_b_cost(5, 1) == 120
+    assert get_b_cost(6, 1) == 135
     # e = 2
-    assert calculate_naive_b_cost(1, 2) == 0
-    assert calculate_naive_b_cost(2, 2) == 30
-    assert calculate_naive_b_cost(3, 2) == 45
-    assert calculate_naive_b_cost(4, 2) == 75
-    assert calculate_naive_b_cost(5, 2) == 90
-    assert calculate_naive_b_cost(6, 2) == 120
+    assert get_b_cost(1, 2) == 0
+    assert get_b_cost(2, 2) == 30
+    assert get_b_cost(3, 2) == 45
+    assert get_b_cost(4, 2) == 75
+    assert get_b_cost(5, 2) == 90
+    assert get_b_cost(6, 2) == 120
     # e = 3
-    assert calculate_naive_b_cost(1, 3) == 0
-    assert calculate_naive_b_cost(2, 3) == 30
-    assert calculate_naive_b_cost(3, 3) == 45
-    assert calculate_naive_b_cost(4, 3) == 75
-    assert calculate_naive_b_cost(5, 3) == 90
-    assert calculate_naive_b_cost(6, 3) == 120
+    assert get_b_cost(1, 3) == 0
+    assert get_b_cost(2, 3) == 30
+    assert get_b_cost(3, 3) == 45
+    assert get_b_cost(4, 3) == 75
+    assert get_b_cost(5, 3) == 90
+    assert get_b_cost(6, 3) == 120
     # e = 4
-    assert calculate_naive_b_cost(1, 4) == 0
-    assert calculate_naive_b_cost(2, 4) == 0
-    assert calculate_naive_b_cost(3, 4) == 30
-    assert calculate_naive_b_cost(4, 4) == 45
-    assert calculate_naive_b_cost(5, 4) == 75
-    assert calculate_naive_b_cost(6, 4) == 90
+    assert get_b_cost(1, 4) == 0
+    assert get_b_cost(2, 4) == 0
+    assert get_b_cost(3, 4) == 30
+    assert get_b_cost(4, 4) == 45
+    assert get_b_cost(5, 4) == 75
+    assert get_b_cost(6, 4) == 90
 
 
 def test_get_a_naive_cost():
@@ -98,6 +98,7 @@ def test_get_a_cost():
     assert get_a_cost(13) == 430
     assert get_a_cost(14) == 450
     assert get_a_cost(15) == 450
+
 
 
 

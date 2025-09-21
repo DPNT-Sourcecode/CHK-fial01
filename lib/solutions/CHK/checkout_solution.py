@@ -60,12 +60,15 @@ def calculate_naive_a_cost(no_of_a: int) -> int:
             remainder_of_remainder * A_PRICE)
 
 
-def calculate_naive_b_cost(no_of_b: int, no_of_e: int):
+def get_b_cost(no_of_b: int, no_of_e: int):
     no_of_free_b = no_of_e // 2
     b_to_pay = no_of_b - no_of_free_b
+    if b_to_pay <= 0:
+        return 0
     pairs_of_b = b_to_pay // 2
     single_b = b_to_pay % 2
     return pairs_of_b * B_SPECIAL_PAIR_PRICE + single_b * B_PRICE
+
 
 
 
