@@ -27,8 +27,9 @@ def test_get_amounts_empty():
 def test_get_cost():
     input = {"A": 4, "B": 3, "C": 1, "D": 1, "E": 2, "F": 3}
     assert get_cost(input) == 360
-    # 150 + 0 + 20 + 15 + 80 = 265
-    input = {"A": 4, "B": 0, "C": 1, "D": 1, "E": 2}
+    # 180 + 45 + 20 + 15 + 80 + 20 =
+    input = {"A": 4, "B": 0, "C": 1, "D": 1, "E": 2, "F": 2}
+    assert get_cost(input) == 285
 
 
 def test_get_amounts_invalid_input_raises_value_error():
@@ -122,3 +123,4 @@ def test_checkout():
     assert CheckoutSolution().checkout("") == 0
     assert CheckoutSolution().checkout("ABCC") == 120
     assert CheckoutSolution().checkout("AAA") == 130
+

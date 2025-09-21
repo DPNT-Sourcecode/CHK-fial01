@@ -5,12 +5,11 @@ B_PRICE: int = 30
 C_PRICE: int = 20
 D_PRICE: int = 15
 E_PRICE: int = 40
+F_PRICE: int = 10
 A_THREE_PRICE: int = 130  # 3A for 130
-# FFS 200 not 150
 A_FIVE_PRICE: int = 200  # 5A for 200
 B_SPECIAL_PAIR_PRICE: int = 45   # 2B for 45
-F_PRICE: int = 10
-F_THREE_PRICE: int = 20
+F_THREE_PRICE: int = 20  # 3F for 20
 
 
 class CheckoutSolution:
@@ -74,4 +73,5 @@ def get_f_cost(no_of_f: int) -> int:
     no_of_threes = no_of_f // 3
     remainder = no_of_f % 3
     return no_of_threes * F_THREE_PRICE + remainder * F_PRICE
+
 
