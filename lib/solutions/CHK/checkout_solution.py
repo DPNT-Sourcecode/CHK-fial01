@@ -66,3 +66,7 @@ def get_b_cost(no_of_b: int, no_of_e: int):
     return pairs_of_b * B_SPECIAL_PAIR_PRICE + single_b * B_PRICE
 
 
+def get_f_cost(no_of_f: int) -> int:
+    return 0
+
+
