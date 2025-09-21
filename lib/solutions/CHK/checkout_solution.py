@@ -37,11 +37,12 @@ def get_amounts(skus: str) -> dict[str, int]:
 
 
 def get_cost(amounts_dict: dict[str, int]) -> int:
+    a_cost: int = get_a_cost(amounts_dict["A"])
+    b_cost: int = get_b_cost(amounts_dict["B"], amounts_dict["E"])
     c_cost: int = amounts_dict["C"] * C_PRICE
     d_cost: int = amounts_dict["D"] * D_PRICE
-    a_cost = get_a_cost(amounts_dict["A"])
-    b_cost = (amounts_dict["B"] // 2) * B_SPECIAL_PAIR_PRICE + (amounts_dict["B"] % 2) * B_PRICE
-    return a_cost + b_cost + c_cost + d_cost
+    e_cost: int = amounts_dict["E"] * E_PRICE
+    return a_cost + b_cost + c_cost + d_cost + e_cost
 
 
 def get_a_cost(no_of_a: int) -> int:
@@ -68,6 +69,7 @@ def get_b_cost(no_of_b: int, no_of_e: int):
     pairs_of_b = b_to_pay // 2
     single_b = b_to_pay % 2
     return pairs_of_b * B_SPECIAL_PAIR_PRICE + single_b * B_PRICE
+
 
 
 

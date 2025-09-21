@@ -4,6 +4,7 @@ from solutions.CHK.checkout_solution import calculate_naive_a_cost
 from solutions.CHK.checkout_solution import get_b_cost
 from solutions.CHK.checkout_solution import get_a_cost
 from solutions.CHK.checkout_solution import get_amounts
+from solutions.CHK.checkout_solution import get_cost
 
 
 def test_get_amounts():
@@ -26,6 +27,13 @@ def test_get_amounts_invalid_input_raises_value_error():
     with pytest.raises(ValueError):
         get_amounts("AABCCDAFG")
         get_amounts("sausage")
+
+
+def test_get_cost():
+    input = {"A": 4, "B": 3, "C": 1, "D": 1, "E": 2}
+#     150 + 45 + 20 + 15 + 80 = 310
+    assert get_cost(input) == 310
+
 
 
 def test_get_b_naive_cost():
@@ -98,6 +106,7 @@ def test_get_a_cost():
     assert get_a_cost(13) == 430
     assert get_a_cost(14) == 450
     assert get_a_cost(15) == 450
+
 
 
 
