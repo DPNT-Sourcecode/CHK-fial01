@@ -108,19 +108,21 @@ def get_f_cost(no_of_f: int) -> int:
 
 
 
-
-
 # assume special prizes list sorted descending amount order
-def get_cost_for_code(amount: int, special_prices: list[SpecialOffer]):
+def get_cost_for_code(amount: int, special_prices: list[SpecialOffer],
+                      free_offer: FreeOffer | None, amounts_dict: dict[str, int]):
     total_cost = 0
+    left_to_pay = amount
+    if free_offer:
+        left_to_pay = amount - free_offer.quantity * amounts_dict[free_offer.code]
     if amount <= 0:
         return total_cost
-    left_to_pay = amount
     for special_price in special_prices:
         amount_at_price = left_to_pay // special_price.quantity
         cost = amount_at_price * special_price.price
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+
 
 
