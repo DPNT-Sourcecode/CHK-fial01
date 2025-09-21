@@ -200,4 +200,23 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
 
 
 def get_cost_for_stxyz(amounts_dict):
+    no_of_triples = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
+                     + amounts_dict["Y"] + amounts_dict["Z"]) // 3
+    cost_of_triples = no_of_triples * S_T_X_Y_Z_THREE_PRICE
+    remainder = no_of_triples % 3
     return 0
+
+
+def get_cheapest_remainder(amounts_dict):
+    cost = 0
+    no_of_triples = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
+                     + amounts_dict["Y"] + amounts_dict["Z"]) // 3
+    remainder = no_of_triples % 3
+    remainder_of_non_x = remainder - amounts_dict["X"]
+    if remainder > amounts_dict["X"]:
+        cost = amounts_dict["X"] + X_PRICE
+        remainder_of_non_x_non_z = (remainder_of_non_x - amounts_dict["S"]
+                                    + amounts_dict["T"] + amounts_dict["Y"])
+        if remainder_of_non_x_non_z > 0:
+    else:
+        return X_PRICE * remainder
