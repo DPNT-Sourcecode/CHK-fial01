@@ -47,4 +47,3 @@ def test_checkout_invalid_input():
 
 
 
-
