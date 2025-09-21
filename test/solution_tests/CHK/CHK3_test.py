@@ -123,5 +123,3 @@ def test_checkout():
     assert CheckoutSolution().checkout("") == 0
     assert CheckoutSolution().checkout("ABCCFFFF") == 150
     assert CheckoutSolution().checkout("AAA") == 130
-
-
