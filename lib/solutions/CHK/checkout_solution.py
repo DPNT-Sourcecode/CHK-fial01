@@ -254,6 +254,3 @@ def remove_items_used_in_offers(amounts_dict):
 #             remainder -= no_of_sty
 #             cost += Z_PRICE * no_of_z
 #             return cost
-
-
-
