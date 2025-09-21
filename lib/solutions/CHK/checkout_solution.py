@@ -117,7 +117,7 @@ def get_cost_for_code(amount: int, special_prices: list[SpecialPrice],
     left_to_pay = amount
     if free_offer and amounts_dict:
         # check key error higher up
-        left_to_pay = amount - free_offer.quantity // amounts_dict[free_offer.code]
+        left_to_pay = amount - amounts_dict[free_offer.code] // free_offer.quantity
     if left_to_pay <= 0:
         return total_cost
     for special_price in special_prices:
@@ -126,6 +126,7 @@ def get_cost_for_code(amount: int, special_prices: list[SpecialPrice],
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+
 
 
 
