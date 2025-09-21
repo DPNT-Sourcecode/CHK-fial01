@@ -25,10 +25,12 @@ class CheckoutSolution:
 
 
 
-
-
 def get_amounts(skus: str) -> dict[str, int]:
-    pass
+    a_codes = re.findall(r"A", skus)
+    b_codes = re.findall(r"B", skus)
+    c_codes = re.findall(r"C", skus)
+    d_codes = re.findall(r"D", skus)
+    return dict(A=len(a_codes), B=len(b_codes), C=len(c_codes), D=len(d_codes))
 
 
 
@@ -82,3 +84,4 @@ def get_amounts(skus: str) -> dict[str, int]:
 #     a_cost = (amounts_dict["A"] // 3) * A_SPECIAL_PRICE + (amounts_dict["A"] % 3) * A_PRICE
 #     b_cost = (amounts_dict["B"] // 2) * B_SPECIAL_PRICE + (amounts_dict["B"] % 2) * B_PRICE
 #     return a_cost + b_cost + c_cost + d_cost
+
