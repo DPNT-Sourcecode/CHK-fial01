@@ -200,10 +200,13 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
 
 
 def get_cost_for_stxyz(amounts_dict):
-    no_of_triples = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
-                     + amounts_dict["Y"] + amounts_dict["Z"]) // 3
+    no_of_items = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"] + amounts_dict["Y"] + amounts_dict["Z"])
+    no_of_triples = no_of_items // 3
     cost_of_triples = no_of_triples * S_T_X_Y_Z_THREE_PRICE
+    remainder = no_of_items % 3
     used_offers_removed = remove_items_used_in_offers(amounts_dict)
+    if remainder == 0:
+        return cost_of_triples
     print(f"cost_of_triples = {cost_of_triples}, used_offers_removed={used_offers_removed}")
     return cost_of_triples + get_cost_for_stxyz(used_offers_removed)
 
@@ -212,8 +215,7 @@ def remove_items_used_in_offers(amounts_dict):
     no_of_items = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"] + amounts_dict["Y"] + amounts_dict["Z"])
     amounts_dict_copy = dict(amounts_dict)
     no_of_triples = no_of_items // 3
-    remainder = no_of_items % 3
-    for index in range(0, no_of_items*3):
+    for index in range(0, no_of_triples*3):
         if amounts_dict_copy["Z"] > 0:
             amounts_dict_copy["Z"] = amounts_dict_copy["Z"] - 1
         elif amounts_dict_copy["Y"] > 0:
@@ -224,32 +226,34 @@ def remove_items_used_in_offers(amounts_dict):
             amounts_dict_copy["T"] = amounts_dict_copy["T"] - 1
         else:
             amounts_dict_copy["X"] = amounts_dict_copy["X"] - 1
+    return amounts_dict_copy
 
 
-def get_cheapest_remainder(amounts_dict):
-    cost = 0
-    no_of_items = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
-                   + amounts_dict["Y"] + amounts_dict["Z"]) // 3
-    no_of_triples = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
-                     + amounts_dict["Y"] + amounts_dict["Z"]) // 3
-    no_of_x = amounts_dict["X"]  # cost 17
-    no_of_z = amounts_dict["Z"]  # cost 21
-    no_of_sty = amounts_dict["S"] + amounts_dict["T"] + amounts_dict["Y"]  # cost 20
-    remainder = no_of_items % 3
-    print(
-        f"no_of_triples={no_of_triples}, no_of_x={no_of_x}, no_of_z={no_of_z}, no_of_sty={no_of_sty}, remainder={remainder}")
-    if remainder < no_of_x:
-        return X_PRICE * remainder
-    else:
-        cost += X_PRICE * no_of_x
-        remainder -= no_of_x
-        if remainder < no_of_sty:
-            cost += remainder * S_PRICE
-            return cost
-        else:
-            cost += S_PRICE * no_of_sty
-            remainder -= no_of_sty
-            cost += Z_PRICE * no_of_z
-            return cost
+# def get_cheapest_remainder(amounts_dict):
+#     cost = 0
+#     no_of_items = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
+#                    + amounts_dict["Y"] + amounts_dict["Z"]) // 3
+#     no_of_triples = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
+#                      + amounts_dict["Y"] + amounts_dict["Z"]) // 3
+#     no_of_x = amounts_dict["X"]  # cost 17
+#     no_of_z = amounts_dict["Z"]  # cost 21
+#     no_of_sty = amounts_dict["S"] + amounts_dict["T"] + amounts_dict["Y"]  # cost 20
+#     remainder = no_of_items % 3
+#     print(
+#         f"no_of_triples={no_of_triples}, no_of_x={no_of_x}, no_of_z={no_of_z}, no_of_sty={no_of_sty}, remainder={remainder}")
+#     if remainder < no_of_x:
+#         return X_PRICE * remainder
+#     else:
+#         cost += X_PRICE * no_of_x
+#         remainder -= no_of_x
+#         if remainder < no_of_sty:
+#             cost += remainder * S_PRICE
+#             return cost
+#         else:
+#             cost += S_PRICE * no_of_sty
+#             remainder -= no_of_sty
+#             cost += Z_PRICE * no_of_z
+#             return cost
+
 
 
