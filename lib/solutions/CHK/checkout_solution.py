@@ -1,4 +1,5 @@
 import re
+import string
 
 A_PRICE: int = 50
 B_PRICE: int = 30
@@ -30,13 +31,14 @@ def get_amounts(skus: str) -> dict[str, int]:
     invalid_match = re.search(r"[^A-Z]", skus)
     if invalid_match is not None:
         raise ValueError
-    a_codes = re.findall(r"A", skus)
-    b_codes = re.findall(r"B", skus)
-    c_codes = re.findall(r"C", skus)
-    d_codes = re.findall(r"D", skus)
-    e_codes = re.findall(r"E", skus)
-    f_codes = re.findall(r"F", skus)
-    return dict(A=len(a_codes), B=len(b_codes), C=len(c_codes), D=len(d_codes), E=len(e_codes), F=len(f_codes))
+    codes_dict = {}
+    for letter in string.ascii_uppercase:
+        codes_dict[letter] = 0
+    for c in skus:
+        if c not in codes_dict.keys():
+            raise ValueError(f"Item with code: {c} does not match expected "
+                             f"codes: {codes_dict.keys()}")
+    return codes_dict
 
 
 def get_cost(amounts_dict: dict[str, int]) -> int:
@@ -73,4 +75,5 @@ def get_f_cost(no_of_f: int) -> int:
     no_of_threes = no_of_f // 3
     remainder = no_of_f % 3
     return no_of_threes * F_THREE_PRICE + remainder * F_PRICE
+
 
