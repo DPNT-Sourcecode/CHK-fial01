@@ -19,14 +19,12 @@ def test_get_amounts_missing_code():
 
 def test_get_amounts_empty():
     assert get_amounts("") == {"A": 0, "B": 0, "C": 0, "D": 0}
-    assert get_amounts("sausage") == {"A": 0, "B": 0, "C": 0, "D": 0}
 
 
 def test_get_amounts_invalid_input_raises_value_error():
-    input = "AABCCDAFG"
-    expected = {"A": 3, "B": 1, "C": 2, "D": 1}
     with pytest.raises(ValueError):
-        assert get_amounts(input) == expected
+        get_amounts("AABCCDAFG")
+        get_amounts("sausage")
 
 
 def test_get_cost():
@@ -53,6 +51,7 @@ def test_checkout_invalid_input():
 def test_checkout_invalid_sku():
     result = CheckoutSolution().checkout("1A2B6A")
     assert result == -1
+
 
 
 
