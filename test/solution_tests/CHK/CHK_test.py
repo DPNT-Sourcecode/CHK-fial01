@@ -56,6 +56,3 @@ def test_checkout():
     assert CheckoutSolution().checkout(input_without_A) == 180
     input_with_zero_A = "2B3C5D0A"
     assert CheckoutSolution().checkout(input_with_zero_A) == 180
-
-
-

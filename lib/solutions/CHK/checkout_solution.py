@@ -73,6 +73,3 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
     a_cost = (amounts_dict["A"] // 3) * A_SPECIAL_PRICE + (amounts_dict["A"] % 3) * A_PRICE
     b_cost = (amounts_dict["B"] // 2) * B_SPECIAL_PRICE + (amounts_dict["B"] % 2) * B_PRICE
     return a_cost + b_cost + c_cost + d_cost
-
-
-
