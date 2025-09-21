@@ -35,7 +35,7 @@ B_PAIR_PRICE: int = 45  # 2B for 45
 F_THREE_PRICE: int = 20  # 3F for 20
 H_FIVE_PRICE: int = 45
 H_TEN_PRICE: int = 80
-K_TWO_PRICE: int = 150
+K_TWO_PRICE: int = 120
 P_FIVE_PRICE: int = 200
 Q_THREE_PRICE: int = 80
 U_FOUR_PRICE: int = 120
@@ -197,5 +197,6 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+
 
 
