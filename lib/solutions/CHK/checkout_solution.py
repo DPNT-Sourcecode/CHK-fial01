@@ -74,18 +74,29 @@ def get_b_cost(no_of_b: int, no_of_e: int):
 
 
 def get_f_cost(no_of_f: int) -> int:
-    no_of_threes = no_of_f // 3
-    remainder = no_of_f % 3
-    return no_of_threes * F_THREE_PRICE + remainder * F_PRICE
+    # no_of_threes = no_of_f // 3
+    # remainder = no_of_f % 3
+    # return no_of_threes * F_THREE_PRICE + remainder * F_PRICE
+    return get_cost_for_code(no_of_f, 0,
+                      [
+                          SpecialPrice(price=F_THREE_PRICE, quantity=3),
+                          SpecialPrice(price=F_PRICE, quantity=1)
+                      ])
 
 
 @dataclass(frozen=True)
 class SpecialPrice:
     price: int
-    amount: int
+    quantity: int
 
 
-def get_cost_for_code(amount: int, no_of_free_items: int, base_price: int, special_prices: list[SpecialPrice]):
-    to_pay = amount - no_of_free_items
-    
-
+# assume special prizes list sorted descending amount order
+def get_cost_for_code(amount: int, no_of_free_items: int, special_prices: list[SpecialPrice]):
+    left_to_pay = amount - no_of_free_items
+    total_cost = 0
+    for special_price in special_prices:
+        amount_at_price = left_to_pay // special_price.quantity
+        cost = amount_at_price * special_price.price
+        left_to_pay = left_to_pay % special_price.quantity
+        total_cost += cost
+    return total_cost
