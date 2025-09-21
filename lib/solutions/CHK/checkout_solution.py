@@ -21,14 +21,14 @@ O_PRICE: int = 10
 P_PRICE: int = 50
 Q_PRICE: int = 30
 R_PRICE: int = 50
-S_PRICE: int = 30
+S_PRICE: int = 20
 T_PRICE: int = 20
 U_PRICE: int = 40
 V_PRICE: int = 50
 W_PRICE: int = 20
-X_PRICE: int = 90
-Y_PRICE: int = 10
-Z_PRICE: int = 50
+X_PRICE: int = 17
+Y_PRICE: int = 20
+Z_PRICE: int = 21
 A_THREE_PRICE: int = 130  # 3A for 130
 A_FIVE_PRICE: int = 200  # 5A for 200
 B_PAIR_PRICE: int = 45  # 2B for 45
@@ -197,3 +197,6 @@ def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer)
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+
+
+def get_cost_for_STXYZ(amounts_dict: dict[str, int]):
