@@ -1,5 +1,6 @@
 import re
 import string
+from dataclasses import dataclass
 
 A_PRICE: int = 50
 B_PRICE: int = 30
@@ -78,8 +79,14 @@ def get_f_cost(no_of_f: int) -> int:
     return no_of_threes * F_THREE_PRICE + remainder * F_PRICE
 
 
-def get_cost_for_code(amount: int, no_of_free_items: int, base_price: int, special_prices: list[tuple[int, int]]):
+@dataclass(frozen=True)
+class SpecialPrice:
+    price: int
+    amount: int
+
+def get_cost_for_code(amount: int, no_of_free_items: int, base_price: int, special_prices: list[SpecialPrice]):
     to_pay = amount - no_of_free_items
+    
 
 
 
