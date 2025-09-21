@@ -47,12 +47,6 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
 
 
 def get_a_cost(no_of_a: int) -> int:
-    if no_of_a % 5 == 4:
-        return calculate_naive_a_cost(no_of_a + 1)
-    return calculate_naive_a_cost(no_of_a)
-
-
-def calculate_naive_a_cost(no_of_a: int) -> int:
     no_of_fives = no_of_a // 5
     remainder_from_fives = no_of_a % 5
     no_of_threes_in_remainder = remainder_from_fives // 3
@@ -70,4 +64,5 @@ def get_b_cost(no_of_b: int, no_of_e: int):
     pairs_of_b = b_to_pay // 2
     single_b = b_to_pay % 2
     return pairs_of_b * B_SPECIAL_PAIR_PRICE + single_b * B_PRICE
+
 

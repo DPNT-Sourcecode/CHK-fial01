@@ -1,9 +1,8 @@
 import pytest
 
 from solutions.CHK.checkout_solution import CheckoutSolution
-from solutions.CHK.checkout_solution import calculate_naive_a_cost
-from solutions.CHK.checkout_solution import get_b_cost
 from solutions.CHK.checkout_solution import get_a_cost
+from solutions.CHK.checkout_solution import get_b_cost
 from solutions.CHK.checkout_solution import get_amounts
 from solutions.CHK.checkout_solution import get_cost
 
@@ -76,37 +75,21 @@ def test_get_b_naive_cost():
 
 
 def test_get_a_naive_cost():
-    assert calculate_naive_a_cost(1) == 50
-    assert calculate_naive_a_cost(2) == 100
-    assert calculate_naive_a_cost(3) == 130
-    assert calculate_naive_a_cost(4) == 180  # whoops
-    assert calculate_naive_a_cost(5) == 200
-    assert calculate_naive_a_cost(6) == 250  # < 260
-    assert calculate_naive_a_cost(7) == 300
-    assert calculate_naive_a_cost(8) == 330
-    assert calculate_naive_a_cost(9) == 380  # whoops
-    assert calculate_naive_a_cost(10) == 300
-    assert calculate_naive_a_cost(11) == 350
-    assert calculate_naive_a_cost(12) == 400
-    assert calculate_naive_a_cost(13) == 430
-    assert calculate_naive_a_cost(14) == 480  # whoops
-    assert calculate_naive_a_cost(15) == 450
-
-
-def test_get_a_cost():
+    assert get_a_cost(1) == 50
+    assert get_a_cost(2) == 100
     assert get_a_cost(3) == 130
-    assert get_a_cost(4) == 150  # whoops
-    assert get_a_cost(5) == 150
-    assert get_a_cost(6) == 200  # < 260
-    assert get_a_cost(7) == 250
-    assert get_a_cost(8) == 280
-    assert get_a_cost(9) == 300  # whoops
-    assert get_a_cost(10) == 300
-    assert get_a_cost(11) == 350
-    assert get_a_cost(12) == 400
-    assert get_a_cost(13) == 430
-    assert get_a_cost(14) == 450
-    assert get_a_cost(15) == 450
+    assert get_a_cost(4) == 180  # whoops
+    assert get_a_cost(5) == 200
+    assert get_a_cost(6) == 250  # < 260
+    assert get_a_cost(7) == 300
+    assert get_a_cost(8) == 330
+    assert get_a_cost(9) == 380  # whoops
+    assert get_a_cost(10) == 400
+    assert get_a_cost(11) == 450
+    assert get_a_cost(12) == 500
+    assert get_a_cost(13) == 530
+    assert get_a_cost(14) == 580  # whoops
+    assert get_a_cost(15) == 600
 
 
 def test_checkout_invalid_input():
@@ -122,3 +105,4 @@ def test_checkout():
     assert CheckoutSolution().checkout("") == 0
     assert CheckoutSolution().checkout("ABCC") == 120
     assert CheckoutSolution().checkout("AAA") == 130
+
