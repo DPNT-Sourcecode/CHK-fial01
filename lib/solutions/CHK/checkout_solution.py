@@ -91,12 +91,12 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
     return a_cost + b_cost + c_cost + d_cost + e_cost + f_cost
 
 
-def get_a_cost(no_of_a: int) -> int:
-    return get_cost_for_code(no_of_a, [
-        SpecialPrice(A_FIVE_PRICE, 5),
-        SpecialPrice(A_THREE_PRICE, 3),
-        SpecialPrice(A_PRICE, 1),
-    ])
+# def get_a_cost(no_of_a: int) -> int:
+#     return get_cost_for_code(no_of_a, [
+#         SpecialPrice(A_FIVE_PRICE, 5),
+#         SpecialPrice(A_THREE_PRICE, 3),
+#         SpecialPrice(A_PRICE, 1),
+#     ])
 
 
 def get_b_cost(amounts_dict: dict[str, int]):
@@ -108,36 +108,28 @@ def get_b_cost(amounts_dict: dict[str, int]):
                       amounts_dict=amounts_dict)
 
 
-def get_f_cost(no_of_f: int) -> int:
-    return get_cost_for_code(no_of_f,
-                             [
-                                 SpecialPrice(price=F_THREE_PRICE, quantity=3),
-                                 SpecialPrice(price=F_PRICE, quantity=1)
-                             ])
+# def get_f_cost(no_of_f: int) -> int:
+#     return get_cost_for_code(no_of_f,
+#                              [
+#                                  SpecialPrice(price=F_THREE_PRICE, quantity=3),
+#                                  SpecialPrice(price=F_PRICE, quantity=1)
+#                              ])
 
 
 
 # assume special prices list sorted descending amount order
-def get_cost_for_code(amount: int, special_prices: list[SpecialPrice],
-                      free_offer: FreeOffer = None, amounts_dict: dict[str, int] = None):
+def get_cost_for_code(amounts_dict: dict[str, int], special_offer: SpecialOffer):
     total_cost = 0
-    left_to_pay = amount
-    if free_offer and amounts_dict:
+    left_to_pay = amounts_dict[special_offer.code]
+    free_offer = special_offer.free_offer
+    if free_offer:
         # check key error higher up
-        left_to_pay = amount - amounts_dict[free_offer.code] // free_offer.quantity
+        left_to_pay = left_to_pay - amounts_dict[free_offer.code] // free_offer.quantity
     if left_to_pay <= 0:
         return total_cost
-    for special_price in special_prices:
+    for special_price in special_offer.special_prices:
         amount_at_price = left_to_pay // special_price.quantity
         cost = amount_at_price * special_price.price
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
-
-
-
-
-
-
-
-

@@ -120,5 +120,3 @@ def test_get_a_naive_cost():
     assert get_a_cost(13) == 530
     assert get_a_cost(14) == 580  # whoops
     assert get_a_cost(15) == 600
-
-
