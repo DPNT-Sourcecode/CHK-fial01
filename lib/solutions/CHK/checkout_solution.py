@@ -44,12 +44,17 @@ def get_amounts(skus: str) -> dict[str, int]:
 
 
 def get_cost(amounts_dict: dict[str, int]) -> int:
-    a_cost: int = get_cost_for_code(amounts_dict["A"], [
-        SpecialPrice(A_FIVE_PRICE, 5),
-        SpecialPrice(A_THREE_PRICE, 3),
-        SpecialPrice(A_PRICE, 1),
-    ])
-    b_cost: int = get_cost_for_code(amounts_dict["B"] - (amounts_dict["E"] // 2), amounts_dict["E"])
+    a_cost: int = get_cost_for_code(amounts_dict["A"],
+                                    [
+                                        SpecialPrice(A_FIVE_PRICE, 5),
+                                        SpecialPrice(A_THREE_PRICE, 3),
+                                        SpecialPrice(A_PRICE, 1)
+                                    ])
+    b_cost: int = get_cost_for_code(amounts_dict["B"] - (amounts_dict["E"] // 2),
+                                    [
+                                        SpecialPrice(price=F_THREE_PRICE, quantity=3),
+                                        SpecialPrice(price=F_PRICE, quantity=1)
+                                    ])
     c_cost: int = get_cost_for_code(amounts_dict["C"],
                                     [SpecialPrice(price=C_PRICE, quantity=1)])
     d_cost: int = get_cost_for_code(amounts_dict["D"],
@@ -108,6 +113,3 @@ def get_cost_for_code(amount: int, special_prices: list[SpecialPrice]):
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
-
-
-
