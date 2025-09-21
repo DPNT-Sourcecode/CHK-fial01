@@ -2,6 +2,29 @@ import pytest
 
 from solutions.CHK.checkout_solution import calculate_naive_a_cost
 from solutions.CHK.checkout_solution import get_a_cost
+from solutions.CHK.checkout_solution import get_amounts
+
+
+def test_get_amounts():
+    input = "AABCCEDAE"
+    expected = {"A": 3, "B": 1, "C": 2, "D": 1, "E": 2}
+    assert get_amounts(input) == expected
+
+
+def test_get_amounts_missing_code():
+    input = "AACCDA"
+    expected = {"A": 3, "B": 0, "C": 2, "D": 1, "E": 0}
+    assert get_amounts(input) == expected
+
+
+def test_get_amounts_empty():
+    assert get_amounts("") == {"A": 0, "B": 0, "C": 0, "D": 0, "E": 0}
+
+
+def test_get_amounts_invalid_input_raises_value_error():
+    with pytest.raises(ValueError):
+        get_amounts("AABCCDAFG")
+        get_amounts("sausage")
 
 
 def test_get_a_naive_cost():
@@ -16,7 +39,7 @@ def test_get_a_naive_cost():
     assert calculate_naive_a_cost(11) == 350
     assert calculate_naive_a_cost(12) == 400
     assert calculate_naive_a_cost(13) == 430
-    assert calculate_naive_a_cost(14) == 480
+    assert calculate_naive_a_cost(14) == 480  # whoops
     assert calculate_naive_a_cost(15) == 450
 
 
@@ -32,6 +55,7 @@ def test_get_a_cost():
     assert get_a_cost(11) == 350
     assert get_a_cost(12) == 400
     assert get_a_cost(13) == 430
-    assert get_a_cost(14) == 480
+    assert get_a_cost(14) == 450
     assert get_a_cost(15) == 450
+
 
