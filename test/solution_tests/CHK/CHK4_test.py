@@ -1,6 +1,7 @@
 from solutions.CHK.checkout_solution import get_a_cost
 from solutions.CHK.checkout_solution import get_amounts
 from solutions.CHK.checkout_solution import get_b_cost
+from solutions.CHK.checkout_solution import get_cost
 from solutions.CHK.checkout_solution import get_f_cost
 
 empty_amounts_dict = dict(A=0, B=0, C=0, D=0, E=0, F=0, G=0, H=0, I=0, J=0, K=0, L=0,
@@ -31,8 +32,23 @@ def test_get_amounts_empty():
         assert get_amounts("") == empty_amounts_dict
 
 
-def test_get_cost_for_code():
-    pass
+def test_get_cost():
+    amounts = empty_amounts_dict.copy()
+    amounts["A"] = 4
+    amounts["B"] = 3
+    amounts["C"] = 1
+    amounts["D"] = 1
+    amounts["E"] = 2
+    amounts["F"] = 3
+    assert get_cost(amounts) == 360
+    amounts_2 = empty_amounts_dict.copy()
+    amounts_2["A"] = 4
+    amounts_2["B"] = 0
+    amounts_2["C"] = 1
+    amounts_2["D"] = 1
+    amounts_2["E"] = 2
+    amounts_2["F"] = 2
+    assert get_cost(amounts_2) == 315
 
 
 def test_get_f_cost():
@@ -104,4 +120,5 @@ def test_get_a_naive_cost():
     assert get_a_cost(13) == 530
     assert get_a_cost(14) == 580  # whoops
     assert get_a_cost(15) == 600
+
 

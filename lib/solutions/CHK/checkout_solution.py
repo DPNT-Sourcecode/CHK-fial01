@@ -27,6 +27,13 @@ class SpecialPrice:
     quantity: int
 
 
+@dataclass
+class SpecialOffer:
+    code: str
+    special_prices: list[SpecialPrice]
+    free_offer: Optional[FreeOffer] = None
+
+
 class CheckoutSolution:
 
     # skus = unicode string
@@ -126,6 +133,7 @@ def get_cost_for_code(amount: int, special_prices: list[SpecialPrice],
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+
 
 
 
