@@ -76,3 +76,6 @@ def get_f_cost(no_of_f: int) -> int:
     no_of_threes = no_of_f // 3
     remainder = no_of_f % 3
     return no_of_threes * F_THREE_PRICE + remainder * F_PRICE
+
+
+
