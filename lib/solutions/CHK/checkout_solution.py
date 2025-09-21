@@ -1,6 +1,7 @@
 import re
 import string
 from dataclasses import dataclass
+from typing import Optional
 
 A_PRICE: int = 50
 B_PRICE: int = 30
@@ -24,8 +25,6 @@ class FreeOffer:
 class SpecialOffer:
     price: int
     quantity: int
-    free_offer: FreeOffer = None
-
 
 
 class CheckoutSolution:
@@ -66,8 +65,8 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
                                     ])
     b_cost: int = get_cost_for_code(amounts_dict["B"] - (amounts_dict["E"] // 2),
                                     [
-                                        SpecialOffer(price=F_THREE_PRICE, quantity=3),
-                                        SpecialOffer(price=F_PRICE, quantity=1)
+                                        SpecialOffer(price=B_SPECIAL_PAIR_PRICE, quantity=2),
+                                        SpecialOffer(price=B_PRICE, quantity=1)
                                     ])
     c_cost: int = get_cost_for_code(amounts_dict["C"],
                                     [SpecialOffer(price=C_PRICE, quantity=1)])
@@ -93,12 +92,11 @@ def get_a_cost(no_of_a: int) -> int:
 
 
 def get_b_cost(no_of_b: int, no_of_e: int):
-    no_of_free_b = no_of_e // 2
-    b_to_pay = no_of_b - no_of_free_b
-    return get_cost_for_code(b_to_pay, [
-        SpecialOffer(B_SPECIAL_PAIR_PRICE, 2),
-        SpecialOffer(B_PRICE, 1)
-    ])
+    return get_cost_for_code(no_of_b - (no_of_e // 2),
+                             [
+                                 SpecialOffer(price=B_SPECIAL_PAIR_PRICE, quantity=2),
+                                 SpecialOffer(price=B_PRICE, quantity=1)
+                             ])
 
 
 def get_f_cost(no_of_f: int) -> int:
@@ -124,4 +122,5 @@ def get_cost_for_code(amount: int, special_prices: list[SpecialOffer]):
         left_to_pay = left_to_pay % special_price.quantity
         total_cost += cost
     return total_cost
+
 
