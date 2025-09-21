@@ -1,3 +1,4 @@
+from solutions.CHK.checkout_solution import CheckoutSolution
 from solutions.CHK.checkout_solution import get_amounts
 from solutions.CHK.checkout_solution import get_b_cost
 from solutions.CHK.checkout_solution import get_cost
@@ -27,7 +28,7 @@ def test_get_amounts():
 
 
 def test_get_amounts_empty():
-        assert get_amounts("") == empty_amounts_dict
+    assert get_amounts("") == empty_amounts_dict
 
 
 def test_get_cost():
@@ -87,3 +88,16 @@ def test_get_b_naive_cost():
     assert get_b_cost(dict(B=6, E=4)) == 90
 
 
+def test_checkout_invalid_input():
+    assert CheckoutSolution().checkout("1A2B6A") == -1
+    assert CheckoutSolution().checkout("aAA") == -1
+    assert CheckoutSolution().checkout(12) == -1
+    assert CheckoutSolution().checkout("carrotsA") == -1
+
+
+def test_checkout():
+    assert CheckoutSolution().checkout("AABCABADBEEFFF") == 360
+    assert CheckoutSolution().checkout("AACAADEEF") == 305
+    assert CheckoutSolution().checkout("") == 0
+    assert CheckoutSolution().checkout("ABCCFFFF") == 150
+    assert CheckoutSolution().checkout("AAA") == 130

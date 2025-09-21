@@ -137,7 +137,11 @@ class CheckoutSolution:
             amounts_dict: dict[str, int] = get_amounts(skus)
         except ValueError:
             return -1
-        return get_cost(amounts_dict)
+        try:
+            return get_cost(amounts_dict)
+        except KeyError as e:
+            print(f"keyError: {e} from get_cost on amounts_dict={amounts_dict}")
+            return -1
 
 
 def get_amounts(skus: str) -> dict[str, int]:
