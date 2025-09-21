@@ -33,8 +33,9 @@ def test_get_cost():
 
 
 def test_checkout():
-    input = "AABCABADCB"
-    assert CheckoutSolution().checkout(input) == 230
+    assert CheckoutSolution().checkout("AABCABADCB") == 310
+    assert CheckoutSolution().checkout("") == 0
+    assert CheckoutSolution().checkout("ABCC") == 120
 
 
 def test_checkout_invalid_input():
@@ -45,9 +46,4 @@ def test_checkout_invalid_input():
 def test_checkout_invalid_sku():
     result = CheckoutSolution().checkout("1A2B6A")
     assert result == -1
-
-
-
-
-
 
