@@ -5,7 +5,7 @@ B_PRICE: int = 30
 C_PRICE: int = 20
 D_PRICE: int = 15
 A_THREE_PRICE: int = 130  # 3A for 130
-A_FIVE_PRICE: int = 150  # 3A for 130
+A_FIVE_PRICE: int = 150  # 3A for 150
 B_SPECIAL_PRICE: int = 45   # 2B for 45
 
 
@@ -38,7 +38,7 @@ def get_cost(amounts_dict: dict[str, int]) -> int:
     c_cost: int = amounts_dict["C"] * C_PRICE
     d_cost: int = amounts_dict["D"] * D_PRICE
     a_cost = (amounts_dict["A"] // 5) * A_FIVE_PRICE + (amounts_dict["A"] % 5) * A_PRICE
-    
+
     b_cost = (amounts_dict["B"] // 2) * B_SPECIAL_PRICE + (amounts_dict["B"] % 2) * B_PRICE
     return a_cost + b_cost + c_cost + d_cost
 
@@ -53,3 +53,4 @@ def get_a_cost(no_of_a: int) -> int:
                                  remainder_of_remainder * A_PRICE
                                  )
     # Could there be cases where it's cheaper to break the last 5 into more threes?
+    # No, consider no_of_a = 6. Either 150 + 50 = 200 or 130*2 = 260
