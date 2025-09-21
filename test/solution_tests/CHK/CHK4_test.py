@@ -87,4 +87,3 @@ def test_get_b_naive_cost():
     assert get_b_cost(dict(B=6, E=4)) == 90
 
 
-
