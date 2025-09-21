@@ -26,3 +26,4 @@ def test_get_amounts():
 
 def test_get_amounts_empty():
         assert get_amounts("") == empty_amounts_dict
+
