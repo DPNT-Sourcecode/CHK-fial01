@@ -89,7 +89,3 @@ def get_cost_for_code(amount: int, no_of_free_items: int, base_price: int, speci
     to_pay = amount - no_of_free_items
     
 
-
-
-
-
