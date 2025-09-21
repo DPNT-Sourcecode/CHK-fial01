@@ -14,7 +14,6 @@ def test_get_cost_for_stxyz():
     assert get_cost_for_stxyz(input) == 107
 
 
-
 def test_remove_items_used_in_offers():
     input = {"S": 3, "T": 1, "X": 2, "Y": 1, "Z": 0}
     assert (remove_items_used_in_offers(input) ==
