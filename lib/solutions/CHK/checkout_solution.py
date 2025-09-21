@@ -211,12 +211,19 @@ def get_cheapest_remainder(amounts_dict):
     cost = 0
     no_of_triples = (amounts_dict["S"] + amounts_dict["T"] + amounts_dict["X"]
                      + amounts_dict["Y"] + amounts_dict["Z"]) // 3
+    no_of_x = amounts_dict["X"] # cost 17
+    no_of_sty = amounts_dict["S"] + amounts_dict["T"] + amounts_dict["Y"] # cost 20
     remainder = no_of_triples % 3
-    remainder_of_non_x = remainder - amounts_dict["X"]
-    if remainder > amounts_dict["X"]:
-        cost = amounts_dict["X"] + X_PRICE
-        remainder_of_non_x_non_z = (remainder_of_non_x - amounts_dict["S"]
-                                    + amounts_dict["T"] + amounts_dict["Y"])
-        if remainder_of_non_x_non_z > 0:
-    else:
+
+    if remainder < no_of_x:
         return X_PRICE * remainder
+    else:
+        cost += X_PRICE * no_of_x
+        remainder -= no_of_x
+        if remainder < no_of_sty:
+            cost += remainder * S_PRICE
+            return cost
+        else:
+            cost += S_PRICE * no_of_sty
+            remainder -= no_of_sty
+            cost += Z_PRICE * amounts_dict["Z"]
